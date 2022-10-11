@@ -1,4 +1,6 @@
 import { useSelector } from "react-redux";
+import { Notice } from "./notice";
+
 
 const Tasks_right = () => {
 
@@ -73,7 +75,7 @@ const Tasks_right = () => {
                                 className="power_mode"
                             >
                                 <span>电源模式(已接通电源)：更好的性能</span>
-                                <input type="range" min="0" max="2"></input>
+                                <input type="range" min="0" max="2" value ="1"></input>
                                 <div
                                     className="power_mode_range_icons"
                                 >
@@ -160,47 +162,7 @@ const Tasks_right = () => {
                             ></div>
                         </div>
                     </li>
-                    <li
-                        className="notice task_hover task"
-                        data-action="FUNCS_INFO_TOOGLE"
-                    >
-                        <div
-                            className="notice_icon  icon_continer"
-                            data-action="FUNCS_INFO_TOOGLE"
-                        >
-                            <div
-                                className="icon"
-                                data-action="FUNCS_INFO_TOOGLE"
-                            ></div>
-                        </div>
-                        <div
-                            className="notice_info"
-                            data-hide={task_bar.funcs_info !== "notice"}
-                            style={{ "--prefix": "FUNCS_INFO" }}
-                        >
-                            <div
-                                className="notice_top"
-                            >
-                                <div
-                                    className="notice_manage"
-                                >管理通知</div>
-                                <div
-                                    className="notices"
-                                >没有新通知</div>
-                            </div>
-                            <div
-                                className="notice_bottom"
-                            >
-                                <div
-                                    className="options_fold"
-                                >折叠</div>
-                                <div
-                                    className="options_container"
-                                ></div>
-                                <input type="range"></input>
-                            </div>
-                        </div>
-                    </li>
+                    <Notice />
                 </ul>
             </div>
         </div>

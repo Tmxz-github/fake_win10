@@ -1,0 +1,108 @@
+
+.notice{
+    width: 2.5rem;
+    height: 100%;
+    position: relative;;
+}
+.notice_icon .icon{
+    width: 100%;
+    height: 100%;
+    background-image: url(../../../img/icons8-comments-52.png);
+    transform: translate(3rem,0);
+    filter: drop-shadow(-3rem 0 white);
+    background-size: 1rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.notice_info{
+    width: 25rem;
+    height: calc(100vh - var(--task_height));
+    position: absolute;
+    bottom: 40px;
+    right: 0;
+    border: 1px solid black;
+    transition: all 0.2s;
+    background-color: rgba(17, 17, 17, 0.9);
+    backdrop-filter: blur(1rem);
+    display: flex;
+    flex-direction: column;
+}
+.notice_info[data-hide="true"]{
+    width: 0;
+    opacity: 0;
+    z-index: -1;
+}
+.notice_top{
+    flex: 1;
+    width: 100%;
+}
+.notice_manage{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+.notice_manage > span{
+    font-size: .75rem;
+    margin-right: 1rem;
+}
+.notice_manage > span:hover{
+    color: rgb(164, 164, 164);
+}
+.notices{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notice_bottom{
+    flex: 1;
+    /* width: 100%; */
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.options_fold{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+.options_fold > span{
+    font-size: .75rem;
+}
+.options_fold > span:hover{
+    color: rgb(164, 164, 164);
+}
+.options_container{
+    display: flex;
+    width: 100%;
+    height: 75%;
+}
+.options_container > ul{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+.option{
+    display: block;
+    flex: 0 0 25%;
+    /* flex-basis: 21%; */
+    /* width: 25%; */
+    /* height: 24%; */
+    /* margin-right: .25rem; */
+}
+
+.notice_bottom input[type="range"]{
+    
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15%
+}
+
