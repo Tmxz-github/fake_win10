@@ -1,0 +1,21 @@
+.start_menu {
+  border: 1px solid black;
+  position: absolute;
+  left: 0;
+  bottom: 2.5rem;
+  width: 40rem;
+  height: 80vh;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(17, 17, 17, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+.start_menu[data-hide="true"] {
+  height: 40vh;
+  opacity: 0;
+  z-index: -1;
+}
+/*10 40 50*/
+

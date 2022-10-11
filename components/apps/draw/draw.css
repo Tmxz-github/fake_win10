@@ -1,0 +1,214 @@
+li{
+    list-style: none;
+}
+.draw{
+    position: absolute;
+    width: 1000px;
+    height: 500px;
+    border: 1px solid black;
+    top: 60px;
+    left: 150px;
+
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+.draw[data-top="true"]{
+    z-index: 9;
+}
+.draw[data-hide="true"]{
+    opacity: 0;
+    z-index: -1;
+}
+.draw[data-max="true"]{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.draw_top_bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 2rem;
+
+    flex: 0 1 auto;
+}
+.draw_top_bar ul{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+.draw_top_bar ul li{
+    width: 2.5rem;
+}
+
+.draw_select_bar{
+    width: 100%;
+    height: 1.5rem;
+}
+.draw_select_bar ul{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.draw_funcs_bar{
+    width: 100%;
+    height: 7rem;
+    background-color: rgb(245, 246, 247);
+    border-top: 1px solid rgb(218, 219, 220);
+    border-bottom: 1px solid rgb(218, 219, 220);
+}
+.draw_funcs{
+    width: 1000px;
+    height: 100%;
+    background-color: rgb(245, 246, 247);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.func{
+    border: 1px solid rgb(227, 228, 229);
+}
+
+.draw_funcs_bar .draw_brush{
+    position: relative;
+    width: 3rem;
+    height: 100%;
+    border: 1px solid black;
+}
+
+.draw_funcs_bar .draw_tool{
+    width: 5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.draw_tool ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.draw_tool .tool{
+    flex-basis: 30%;
+    margin: 1px;
+    border: 1px solid transparent;
+}
+
+.draw_select{
+    width: 5rem;
+    height: 100%;
+}
+.draw_select span{
+    font-size: 12px;
+}
+.draw_select li{
+    font-size: 14px;
+    display: block;
+    border: 1px solid transparent;
+}
+
+
+.draw_box{
+    position: relative;
+    flex: 1 1 auto;
+    background-color: rgb(211,221,235);
+    overflow: scroll;
+    padding: 5px;
+    overflow: scroll;
+}
+/* .draw_box div{
+    position: relative;
+    flex: 1 1 auto;
+    background-color: rgb(211,221,235);
+    overflow: scroll;
+    padding: 5px;
+} */
+.draw_board{
+    background-color: white;
+    cursor: crosshair;
+    box-shadow: 10px 10px 10px rgb(171,184,202);
+}
+
+.draw_bottom_bar{
+    width: 100%;
+    height: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 3;
+}
+.draw_bottom_bar div{
+    flex-basis: 24%;
+    font-size: 12px;
+}
+
+.canvas_extend_bottom{
+    width: 1rem;
+    height: 1rem;
+    cursor: s-resize;
+    position: absolute;
+}
+.canvas_extend_bottom::after{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 5px;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    border: 1px solid black;
+}
+.canvas_extend_right{
+    width: 1rem;
+    height: 1em;
+    cursor: e-resize;
+    position: absolute;
+}
+.canvas_extend_right::after{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 5px;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    border: 1px solid black;
+}
+.canvas_extend{
+    width: 1rem;
+    height: 1rem;
+    cursor: se-resize;
+    position: absolute;
+}
+.canvas_extend::after{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    border: 1px solid black;
+}
+.draw_board_extend_sample{
+    position: absolute;
+    border: 1px dotted black;
+    top: 0;
+    margin-top: 5px;
+    z-index: 9;
+}
+
+
+
+

@@ -1,0 +1,55 @@
+.desk {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    background-color: #6cf;
+    background-image: url(../../img/wallpaper.jpg);
+    background-size: cover;
+}
+.desk_icons{
+    padding: .3125rem;
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    align-items: top;
+    color: white;
+    text-shadow: 1px 1px black;
+    z-index: -1;
+}
+.desk_icon{
+    width: 4rem;
+    height: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid transparent;
+    margin-bottom: 2rem;
+}
+.calculator_desk_icon{
+    width: 3rem;
+    height: 3rem;
+    background-image: url(../../img/calculator.png);
+    background-size: 2.625rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.draw_desk_icon{
+    width: 3rem;
+    height: 3rem;
+    background-image: url(../../img/color-palette.png);
+    background-size: 2.625rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.selected[data-selected="true"]{
+    background-color: rgba(98,162,228,0.1);
+    border: 1px solid rgba(98,162,228,0.3);
+}
+.hover:hover{
+    background-color: rgba(98,162,228,0.3);
+    border: 1px solid rgba(98,162,228,0.5);
+}

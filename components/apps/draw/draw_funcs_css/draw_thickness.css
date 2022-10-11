@@ -1,0 +1,103 @@
+.draw_funcs_bar .draw_thickness{
+    position: relative;
+    width: 3rem;
+    height: 80%;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.draw_thickness span{
+    font-size: 12px;
+    text-align: center;
+}
+.draw_thickness .thickness_icon{
+    width: 100%;
+}
+.draw_thickness .thickness{
+    position: absolute;
+    top: 100%;
+    left: -1px;
+    z-index: 9;
+    width: 8rem;
+    height: 10rem;
+    margin-top: 1px;
+    background-color: white;
+    border: 1px solid rgb(220,221,222);
+    transition: all 0.3s;
+}
+.draw_thickness .thickness ul{
+    width: 100%;
+    height: 100%;
+    padding: 1px;
+}
+.draw_thickness .thickness li{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.draw_thickness .thickness li::before{
+    position: absolute;
+    left: 4%;
+    background-color: black;
+    border: 1px solid black;
+    width: 90%;
+    content: "";
+}
+.draw_thickness .thickness li:nth-child(1):before{
+    height: 0px;
+}
+.draw_thickness .thickness li:nth-child(2):before{
+    height: 1px;
+}
+.draw_thickness .thickness li:nth-child(3):before{
+    height: 2px;
+}
+.draw_thickness .thickness li:nth-child(4):before{
+    height: 3px;
+}
+
+.draw_thickness .thickness_icon li{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    justify-items: center;
+}
+.draw_thickness .thickness_icon li::before{
+    position: absolute;
+    left: 4%;
+    background-color: black;
+    border: 1px solid black;
+    width: 80%;
+    content: "";
+}
+.draw_thickness .thickness_icon li:nth-child(1):before{
+    height: 0px;
+}
+.draw_thickness .thickness_icon li:nth-child(2):before{
+    height: 1px;
+}
+.draw_thickness .thickness_icon li:nth-child(3):before{
+    height: 2px;
+}
+.draw_thickness .thickness_icon li:nth-child(4):before{
+    height: 3px;
+}
+
+
+
+.draw_thickness .thickness[data-hide="true"]{
+    z-index: -1;
+    opacity: 0;
+}

@@ -1,0 +1,8 @@
+.draw_selected[data-selected="true"]{
+    background-color: rgba(98,162,228,0.3);
+    border: 1px solid rgb(98,162,228);
+}
+.draw_hover:hover{
+    background-color: rgba(98,162,228,0.2);
+    border: 1px solid rgba(98,162,228,0.5);
+}

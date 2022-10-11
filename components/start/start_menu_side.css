@@ -1,0 +1,48 @@
+.start_side{
+    position: absolute;
+    width: 4rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s;
+    z-index: 10;
+}
+.start_side[data-hide="false"]{
+    width: 12rem;
+    background-color: rgb(31, 31, 31);
+}
+.side_option {
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+}
+.start_side_power ul[data-hide="true"] {
+    opacity: 0;
+    height: 4rem;
+}
+.start_side_user ul[data-hide="true"] {
+    opacity: 0;
+    height: 4rem;
+}
+.start_side_bottom ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 12rem;
+    height: 8rem;
+    line-height: 8rem;
+    position: absolute;
+    bottom: 3.1rem;
+    overflow: hidden;
+    background-color: white;
+    transition: all 0.2s;
+    z-index: 10;
+    padding: 0.5rem;
+}
+.start_side_bottom ul li {
+    display: block;
+    height: 2.5rem;
+    line-height: 2.5rem;
+}

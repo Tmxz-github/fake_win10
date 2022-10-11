@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+    user-select: none;
+}
+
+.screen{
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    position: relative;
+}
+.win_ctl{
+    text-align: center;
+    line-height: 32px;
+    transition: all 0.3s;
+}
+.win_ctl:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.close:hover{
+    background-color: red;
+    color: white;
+}

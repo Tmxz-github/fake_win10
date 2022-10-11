@@ -1,0 +1,23 @@
+.start_menu_mid{
+    position: relative;
+    left: 4rem;
+    width: 16rem;
+    height: 100%;
+    overflow-y: scroll;
+}
+.start_menu_mid:hover::-webkit-scrollbar{
+    width: 2px;
+}
+.start_menu_mid::-webkit-scrollbar{
+    width: 0px;
+}
+.start_menu_mid::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+.start_menu_mid::-webkit-scrollbar-thumb {
+    background: rgb(91, 91, 91)
+}
+.char_select{
+    height: 10rem;
+    border: 1px solid black;
+}

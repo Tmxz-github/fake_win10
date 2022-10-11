@@ -1,0 +1,221 @@
+:root{
+    --task_height: 2.5rem;
+}
+
+.task_bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    position: absolute;
+    /* background-color: rgba(17, 17, 17, 0.85); */
+    color: white;
+
+    width: 100%;
+    height: var(--task_height);
+
+    /* backdrop-filter: blur(10px); */
+
+    bottom: 0;
+
+    z-index: 10;
+}
+
+
+.task{
+    transition: all 0.1s;
+}
+.fix_tasks{
+    width: 100%;
+    height: 100%;
+}
+.start_tasks_btn{
+    display: flex;
+    flex-direction: row;
+
+    width: 6rem;
+    height: 100%;
+}
+.start_btn{
+    width: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.start_btn svg{
+    display: block;
+    z-index: -1;
+}
+.start_btn svg[data-hover="true"]{
+    display: none;
+}
+
+.tasks_btn{
+    width: 3rem;
+}
+
+.tasks_left{
+    display: flex;
+    flex-direction: row;
+}
+.apps ul{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+.apps li{
+    list-style: none;
+    height: 100%;
+}
+.apps li[data-min="true"]{
+    background-color: rgba(255,255,255,0.5);
+}
+
+
+
+.funcs{
+    height: 100%;
+}
+.funcs ul{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+.funcs ul li{
+    min-width: 1.5rem;
+    height: 100%;
+    padding-left: .2rem;
+    padding-right: .2rem;
+    /* overflow: hidden; */
+    position: relative;
+}
+
+
+.icon_continer{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.show_invisible{
+    font-size: 1.5rem;
+    line-height: var(--task_height);
+}
+.battery_icon .icon{
+    width: 100%;
+    height: 100%;
+    background-image: url(../../img/full-battery.png);
+    transform: translate(3rem,0);
+    filter: drop-shadow(-3rem 0 white);
+    background-size: 1rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/*362 256*/
+.battery_info{
+    width: 22rem;
+    height: 16rem;
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: rgba(17, 17, 17, 0.9);
+    backdrop-filter: blur(1rem);
+    -web-kit-backdrop-filter: blur(1rem);
+    transition: all 0.2s;
+    top: -16rem;
+    left: -10rem;
+}
+.battery_info[data-hide="true"]{
+    top: 0;
+    height: 0;
+    opacity: 0;
+    z-index: -1;
+}
+.battery_state{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.battery_precent{
+    font-size: 3rem;
+    font-weight: lighter;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+.battery_full{
+    color: rgb(164, 164, 164);
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: .875rem;
+}
+.battery_icon_big{
+    width: 5rem;
+    height: 5rem;
+    overflow: hidden;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+.battery_icon_big .icon{
+    width: 100%;
+    height: 100%;
+    background-image: url(../../img/full-battery.png);
+    transform: translate(-10rem,0);
+    filter: drop-shadow(10rem 0 white);
+    background-size: 4rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.power_mode span{
+    font-size: .875rem;
+    font-weight: lighter;
+}
+
+.wifi_icon .icon{
+    width: 100%;
+    height: 100%;
+    transform: rotate(-47deg) translate(0rem,-5rem);
+    background-image: url(../../img/icons8-wi-fi-48.png);
+    filter: drop-shadow(0rem 5rem white);
+    background-size: 1rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.volume_icon .icon{
+    width: 100%;
+    height: 100%;
+    background-image: url(../../img/icons8-voice-48.png);
+    transform: translate(3rem,0);
+    filter: drop-shadow(-3rem 0 white);
+    background-size: 1rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.keyboard{
+    font-size: 0.8rem;
+    line-height: var(--task_height);
+}
+.time{
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.clock{
+    text-align: center;
+}
+
+.notice{
+    width: 2.5rem;
+    height: 100%;
+}
+.notice_icon .icon{
+    width: 100%;
+    height: 100%;
+    background-image: url(../../img/icons8-comments-52.png);
+    transform: translate(3rem,0);
+    filter: drop-shadow(-3rem 0 white);
+    background-size: 1rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
