@@ -4,6 +4,7 @@ import { Tasks_right } from "./tasks_components/tasks_right";
 import { Tasks_left } from "./tasks_components/tasks_left";
 
 import "./task_bar.css"
+import "./tasks_components/battery.css"
 import "./task_bar_effect.css"
 
 const Task_bar = () => {

@@ -73,7 +73,19 @@ const Tasks_right = () => {
                                 className="power_mode"
                             >
                                 <span>电源模式(已接通电源)：更好的性能</span>
-                                <input type="range"></input>
+                                <input type="range" min="0" max="2"></input>
+                                <div
+                                    className="power_mode_range_icons"
+                                >
+                                    <div>
+                                        <div>1</div>
+                                        <span>最长续航</span>
+                                    </div>
+                                    <div>
+                                        <div>2</div>
+                                        <span>最佳性能</span>
+                                    </div>
+                                </div>
                             </div>
                             <div
                                 className="power_setting"
@@ -130,6 +142,8 @@ const Tasks_right = () => {
                         >{get_date()}</div>
                         <div
                             className="time_info"
+                            data-hide={task_bar.funcs_info !== "time"}
+                            style={{ "--prefix": "FUNCS_INFO" }}
                         >
                             <div
                                 className="calendar_container_top"
