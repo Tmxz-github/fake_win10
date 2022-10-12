@@ -1,6 +1,7 @@
 const df_state = {
     hover:false,
     funcs_info:"",
+    options_fold:false,
 }
 
 const task_bar = (state = df_state,action) => {
@@ -22,6 +23,11 @@ const task_bar = (state = df_state,action) => {
         }
         case "CLOSE_FUNCS_INFO_MENU":{
             tk.funcs_info = "";
+            return tk;
+        }
+        case "OPTIONS_TOGGLE":{
+            console.log("x");
+            tk.options_fold = !tk.options_fold;
             return tk;
         }
         default:

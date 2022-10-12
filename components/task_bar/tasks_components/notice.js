@@ -4,14 +4,25 @@ import { useSelector } from "react-redux"
 const Notice = () => {
 
     const task_bar = useSelector(state => state.task_bar);
-    const options = new Array(16).fill("option");
-    const ops = options.map((op,i) => {
+    const options = task_bar.options_fold ? ["平板模式","网络","所有设置","飞行模式"] : 
+                    ["平板模式","网络","所有设置","飞行模式","定位","专注助手","移动热点","夜间模式","VPN","节电模式",
+                    "屏幕截图","投影","连接","亮度","就近共享","旋转锁定"];
+    const ops =  options.map((op,i) => {
         return (
             <li
                 className="option"
                 key={i}
             >
-                {op}
+                <div
+                    className="option_icon"
+                >
+                    <div
+                        className="icon"
+                    ></div>
+                </div>
+                <span
+                    className="option_text"
+                >{op}</span>
             </li>
         )
     });
@@ -49,21 +60,24 @@ const Notice = () => {
                 </div>
                 <div
                     className="notice_bottom"
+                    data-fold={task_bar.options_fold}
                 >
                     <div
                         className="options_fold"
                     >
-                        <span>折叠</span>
-                        <span>清除所有通知</span>
+                        <span
+                            className="fold"
+                            data-action="OPTIONS_TOGGLE"
+                        >折叠</span>
                     </div>
                     <div
                         className="options_container"
+                        data-fold={task_bar.options_fold}
                     >
                         <ul>
                             {ops}
                         </ul>
                     </div>
-                    <input type="range"></input>
                 </div>
             </div>
         </li>
