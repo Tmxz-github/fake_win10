@@ -13,11 +13,22 @@ const Tasks_left = () => {
             <li
                 key={name}
                 data-name={name}
-                data-min={app["min"]}
+                data-focus={app["focus"]}
                 data-action={name+"_TOGGLE"}
                 data-g_action="APP_MIN"
-                className="task"
-            >{name}</li>
+                className="task task_hover"
+            >
+                <div
+                    className="task_icon"
+                >
+                    <div
+                        className="icon"
+                        style={{
+                            backgroundImage:"url("+ require("../../../img/"+name.toLowerCase()+".png") +")"
+                        }}
+                    ></div>
+                </div>
+            </li>
         )
     });
 

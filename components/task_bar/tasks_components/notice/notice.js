@@ -1,5 +1,6 @@
 
 import { useSelector } from "react-redux"
+import "./notice.css"
 
 const Notice = () => {
 

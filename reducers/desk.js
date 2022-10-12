@@ -9,6 +9,7 @@ const df_app_state = {
     name:"",
     active:false,
     min:false,
+    focus:true,
 }
 
 const open_apps = (state = df_state,action) => {
@@ -17,6 +18,15 @@ const open_apps = (state = df_state,action) => {
     }
     switch(action.type){
         case "APP_OPEN":{
+            let app_in = false;
+            op_apps.apps.forEach((app) => {
+                app["focus"] = false;
+                if(app["name"] === action.payload){
+                    app["focus"] = true;
+                    app_in = true;
+                }
+            });
+            if(app_in) return op_apps;
             op_apps.apps.push({
                 ...df_app_state,
                 name:action.payload,
@@ -39,6 +49,7 @@ const open_apps = (state = df_state,action) => {
                 if(app["name"] === name) index = i;
             });
             op_apps.apps[index].min = !op_apps.apps[index].min;
+            op_apps.apps[index].focus = !op_apps.apps[index].focus;
             return op_apps;
         }
         case "TOP_MOUSE_DOWN":{
@@ -55,8 +66,14 @@ const open_apps = (state = df_state,action) => {
         }
         case "TO_TOP":{
             op_apps.apps.forEach((app) => {
-                if(app["name"] === action.payload) app["active"] = true;
-                else app["active"] = false;
+                if(app["name"] === action.payload){
+                    app["active"] = true;
+                    app["focus"] = true;
+                }
+                else{
+                    app["active"] = false;
+                    app["focus"] = false;
+                }
             });
             return op_apps;
         }
