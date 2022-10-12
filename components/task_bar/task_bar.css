@@ -138,32 +138,6 @@
     font-size: 0.8rem;
     line-height: var(--task_height);
 }
-.time{
-    font-size: 0.8rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.clock{
-    text-align: center;
-}
-.time_info{
-    width: 20rem;
-    height: 30rem;
-    border: 1px solid black;
-    transition: all 0.2s;
-    background-color: rgba(17, 17, 17, 0.9);
-    backdrop-filter: blur(1rem);
-    position: absolute;
-    bottom: 40px;
-    right: 0;
-}
-.time_info[data-hide="true"]{
-    top: 0;
-    height: 0;
-    opacity: 0;
-    z-index: -1;
-}
+
 
 

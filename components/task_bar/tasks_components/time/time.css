@@ -9,9 +9,8 @@
     text-align: center;
 }
 .time_info{
-    width: 20rem;
+    width: 22rem;
     height: 30rem;
-    border: 1px solid black;
     transition: all 0.2s;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background-color: rgba(17, 17, 17, 0.9);
@@ -33,15 +32,15 @@
     flex: 2;
     padding: 0.5rem;
     padding-left: 1.5rem;
-}
-.time_info_bottom{
-    flex: 7;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 .clock_s{
     width: 100%;
-    height: 5rem;
+    height: 4rem;
+    margin-top: 0.5rem;
     font-size: 3rem;
     font-weight: lighter;
+    line-height: 4rem;
 }
 .date_full{
     color: rgb(121, 230, 255);
@@ -51,3 +50,51 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.time_info_bottom{
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+.calendar_top{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.calendar_top span{
+    font-weight: lighter;
+}
+
+.calendar{
+    flex: 8;
+    margin-top: 0.5rem;
+}
+.week > ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.week > li{
+    flex: 1;
+}
+
+.date_time_setting{
+    flex: 1;
+    color: rgb(121, 230, 255);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.date_time_setting:hover{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+

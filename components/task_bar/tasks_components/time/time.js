@@ -34,6 +34,14 @@ const Time = () => {
         let s = M+"月"+D;
         return [f,s];
     }
+    let d = date.getDate();
+    let w = date.getDay();
+    d = 16;
+    w = 7;
+    let array_42 = [];
+    let cjt = Math.ceil(d/7)*7 - d;
+    let week_day = (w+cjt+1) > 7 ? (w+cjt+1) % 7 : (w+cjt+1);
+    // console.log(week_day);
 
     useEffect(() => {
         const date = new Date();
@@ -78,7 +86,39 @@ const Time = () => {
                 </div>
                 <div
                     className="time_info_bottom"
-                ></div>
+                >
+                    <div
+                        className="calendar_top"
+                    >
+                        <span>2020</span>
+                        <div
+                            className="calendar_ctl"
+                        >
+                            <button>xia</button>
+                            <button>shang</button>
+                        </div>
+                    </div>
+                    <div
+                        className="calendar"
+                    >
+                        <div
+                            className="week"
+                        >
+                            <ul>
+                                <li>一</li>
+                                <li>二</li>
+                                <li>三</li>
+                                <li>四</li>
+                                <li>五</li>
+                                <li>六</li>
+                                <li>日</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div
+                        className="date_time_setting"
+                    >日期和时间设置</div>
+                </div>
             </div>
         </li>
     )
