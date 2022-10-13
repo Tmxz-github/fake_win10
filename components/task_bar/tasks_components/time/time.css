@@ -1,11 +1,15 @@
 .time{
-    font-size: 0.8rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .clock_m{
+    font-size: 0.8rem;
+    text-align: center;
+}
+.date{
+    font-size: 0.8rem;
     text-align: center;
 }
 .time_info{
@@ -13,7 +17,7 @@
     height: 30rem;
     transition: all 0.2s;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    background-color: rgba(17, 17, 17, 0.9);
+    background-color: rgba(17, 17, 17, 0.8);
     backdrop-filter: blur(1rem);
     position: absolute;
     bottom: 40px;
@@ -44,6 +48,7 @@
 }
 .date_full{
     color: rgb(121, 230, 255);
+    font-size: 0.8rem;
     font-weight: lighter;
     width: 10rem;
     display: flex;
@@ -64,10 +69,25 @@
     justify-content: space-between;
     align-items: center;
     margin-left: 1rem;
-    margin-right: 1rem;
+    /* margin-right: 1rem; */
 }
 .calendar_top span{
     font-weight: lighter;
+}
+.calendar_ctl > button{
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: transparent;
+    width: 3rem;
+    height: 2.5rem;
+    font-size: 2rem;
+}
+.calendar_ctl > button:hover{
+    color: white;
+}
+button:focus{
+    border: none;
+    outline: none;
 }
 
 .calendar_container{
@@ -103,20 +123,44 @@
 .calendar_day{
     display: block;
     flex: 1;
-    flex-basis: 14%;
+    flex-basis: 13%;
+    border:2px solid transparent;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: .125rem;
-    border:1px solid transparent;
+    margin: .0625rem;
+}
+.calendar_day > div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .calendar_day:hover{
-    border:1px solid rgba(255, 255, 255, 0.8);
+    border:2px solid rgba(255, 255, 255, 0.4);
 }
 .calendar_day[data-today="true"]{
     color: white;
-    background-color: rgb(0, 120, 215);
+    border-color: rgb(0, 153, 188);
 }
+/* .calendar_day[data-today="true"]:hover{
+    border-color: rgba(0, 153, 188, 0.8);
+} */
+.calendar_day[data-today="true"] > div{
+    border:2px solid black;
+    background-color: rgb(0, 153, 188);
+}
+.calendar_day[data-this_month="false"]{
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.calendar_day[data-selected="true"]{
+    color: white;
+    border-color: rgb(0, 153, 188);
+}
+
+
 
 .date_time_setting{
     flex: 1;
@@ -131,5 +175,3 @@
 .date_time_setting:hover{
     color: rgba(255, 255, 255, 0.5);
 }
-
-

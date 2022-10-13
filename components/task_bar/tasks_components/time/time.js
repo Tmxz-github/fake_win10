@@ -1,10 +1,27 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux"
+import { useSelector,useDispatch } from "react-redux"
 import "./time.css"
 
 const Time = () => {
 
     const task_bar = useSelector(state => state.task_bar);
+    const dispatch = useDispatch();
+    const click_dispatch = (e) => {
+        const target = e.target;
+        const action = target.dataset.action;
+        dispatch({
+            type:action || "",
+            payload:{
+                m:target.dataset.m || "",
+                y:target.dataset.y || "",
+                selected:target.dataset.selected_i || "",
+            },
+        });
+        dispatch({
+            type:"CALENDAR_INIT",
+        })
+    }
+
     const char_num = ["零", "一", "二", "三", "四", "五",
                     "六", "七", "八", "九", "十",
                     "十一", "十二", "十三", "十四", "十五",
@@ -35,55 +52,46 @@ const Time = () => {
         return [f,s];
     }
 
-    let y = date.getFullYear();
-    let m = date.getMonth()+1;
-    let d = date.getDate();
-    let w = date.getDay();
-    let cjt = Math.ceil(d/7)*7 - d;
-    let week_day = (w+cjt+1) > 7 ? (w+cjt+1) % 7 : (w+cjt+1);
-    const month_days = [0,31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    let is_leap = (y % 100 != 0 && y % 4 === 0 || y % 400 === 0);
-    let last_month_days = m - 1 > 0 ? month_days[m - 1] : month_days[12];
-    let this_month_days = month_days[m];
-    if (last_month_days === 0) {
-        if (is_leap) {
-            last_month_days = 29;
-        }
-        else {
-            last_month_days = 28;
-        }
-    }
-    if(this_month_days === 0) {
-        if (is_leap) {
-            this_month_days = 29;
-        }
-        else {
-            this_month_days = 28;
-        }
-    }
     let lis = [];
-    for (let date = last_month_days - week_day + 2; date <= last_month_days; date++){
+    for (let date = task_bar.last_month_days - task_bar.week_day + 2; date <= task_bar.last_month_days; date++){
         lis.push(date);
     }//获取上个月显示的天数
-    for (let date = 1; date <= this_month_days; date++){
+    for (let date = 1; date <= task_bar.this_month_days; date++){
         lis.push(date);
     }//获取本月显示的天数
-    for (let date = 1; date <= (CALENDAR_ITEMS_NUM - week_day + 1 - this_month_days); date++){
+    for (let date = 1; date <= (CALENDAR_ITEMS_NUM - task_bar.week_day + 1 - task_bar.this_month_days); date++){
         lis.push(date);
     }//获取下月显示的天数
+    let this_month = false;
     const calendar = lis.map((day,i) => {
+        if(day === 1){
+            this_month = !this_month;
+        }
         return (
             <li
-                className="calendar_day"
-                data-today={day === d}
+                className="calendar_day date_selected"
+                data-action="DATE_SELECT_TOOGLE"
+                data-selected={parseInt(task_bar.selected_i) === i}
+                data-selected_i={i}
+                data-today={day === date.getDate() && task_bar.m === date.getMonth()+1 && task_bar.y === date.getFullYear()}
+                data-this_month={this_month}
                 data-day={day}
                 key={i}
-            >{day}</li>
+            >
+                <div
+                    data-action="DATE_SELECT_TOOGLE"
+                    data-selected_i={i}
+                >{day}</div>
+            </li>
         )
     })
-    
-    // get_calendar();
 
+
+    useEffect(() => {
+        dispatch({
+            type:"CALENDAR_INIT",
+        });
+    }, [])
     useEffect(() => {
         const date = new Date();
         setTimeout(() => {
@@ -131,12 +139,22 @@ const Time = () => {
                     <div
                         className="calendar_top"
                     >
-                        <span>2020</span>
+                        <span>{task_bar.y+"年"+task_bar.m+"月"}</span>
                         <div
                             className="calendar_ctl"
                         >
-                            <button>xia</button>
-                            <button>shang</button>
+                            <button
+                                onClick={click_dispatch}
+                                data-action="CALENDAR_UP"
+                                data-m={task_bar.m-1}
+                                data-y={task_bar.y}
+                            >-</button>
+                            <button
+                                onClick={click_dispatch}
+                                data-action="CALENDAR_DOWN"
+                                data-m={task_bar.m+1}
+                                data-y={task_bar.y}
+                            >+</button>
                         </div>
                     </div>
                     <div
@@ -158,7 +176,9 @@ const Time = () => {
                         <div
                             className="calendar"
                         >
-                            <ul>{calendar}</ul>
+                            <ul
+                                onClick={click_dispatch}
+                            >{calendar}</ul>
                         </div>
                     </div>
                     <div

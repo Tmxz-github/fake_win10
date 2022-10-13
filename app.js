@@ -63,6 +63,7 @@ const App = () => {
 	}
 	const handle_context_menu = (e) => {
 		e.preventDefault();
+		click_empty(e);
 		if(getComputedStyle(e.target).getPropertyValue("--prefix") === "CONTEXT") return;
 		if(e.target.classList[0] != "desk" && e.target.classList[0] != "desk_icons"){
 			dispatch({

@@ -12,6 +12,10 @@ const Task_bar = () => {
     const dispatch = useDispatch();
 
     const dispatch_click = (e) => {
+        let action_type = getComputedStyle(e.target).getPropertyValue(
+			"--prefix"
+		);
+        if(action_type === "FUNCS_INFO") return;
         dispatch({
             type:e.target.dataset.action || "",
             payload:e.target.closest(".task").classList[0] || "",
