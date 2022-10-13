@@ -6,6 +6,15 @@ const Time = () => {
 
     const task_bar = useSelector(state => state.task_bar);
     const dispatch = useDispatch();
+
+    const border_layer = document.querySelector(".calendar_item_border");
+    const calendar_move = (e) => {
+        let x = e.pageX;
+        let y = e.pageY;
+        let bounding = border_layer.getBoundingClientRect();
+        border_layer.style.webkitMaskPosition = `${x - bounding.x - 80}px ${y -bounding.y - 80}px`;
+    }
+
     const click_dispatch = (e) => {
         const target = e.target;
         const action = target.dataset.action;
@@ -69,22 +78,29 @@ const Time = () => {
         }
         return (
             <li
-                className="calendar_day date_selected"
-                data-action="DATE_SELECT_TOOGLE"
+                className="calendar_day grid date_selected"
                 data-selected={parseInt(task_bar.selected_i) === i}
-                data-selected_i={i}
                 data-today={day === date.getDate() && task_bar.m === date.getMonth()+1 && task_bar.y === date.getFullYear()}
+                key={i}
+            >
+                <div>{day}</div>
+            </li>
+        )
+    });
+
+    const border_items = lis.map((day,i) => {
+        return (
+            <li
+                className="calendar_day_border grid"
+                data-action="DATE_SELECT_TOOGLE"
+                data-selected_i={i}
                 data-this_month={this_month}
                 data-day={day}
                 key={i}
             >
-                <div
-                    data-action="DATE_SELECT_TOOGLE"
-                    data-selected_i={i}
-                >{day}</div>
             </li>
         )
-    })
+    });
 
 
     useEffect(() => {
@@ -177,7 +193,14 @@ const Time = () => {
                             className="calendar"
                         >
                             <ul
+                                className="calendar_body calendar_item_border"
                                 onClick={click_dispatch}
+                                onMouseMove={calendar_move}
+                            >
+                                {border_items}
+                            </ul>
+                            <ul
+                                className="calendar_body calendat_days"
                             >{calendar}</ul>
                         </div>
                     </div>
