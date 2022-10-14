@@ -1,10 +1,16 @@
 
-import { useSelector } from "react-redux"
+import { useSelector， useDispatch } from "react-redux"
 import "./notice.css"
 
 const Notice = () => {
 
     const task_bar = useSelector(state => state.task_bar);
+    const dispatch = useDispatch();
+    const dispatch_click = (e) => {
+        dispatch({
+            type: e.target.dataset.action,
+        });
+    }
     const options = task_bar.options_fold ? ["平板模式","网络","所有设置","飞行模式"] : 
                     ["平板模式","网络","所有设置","飞行模式","定位","专注助手","移动热点","夜间模式","VPN","节电模式",
                     "屏幕截图","投影","连接","亮度","就近共享","旋转锁定"];
@@ -69,6 +75,7 @@ const Notice = () => {
                         <span
                             className="fold"
                             data-action="OPTIONS_TOGGLE"
+                            onClick={dispatch_click}
                         >折叠</span>
                     </div>
                     <div
