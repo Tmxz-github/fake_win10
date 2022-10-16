@@ -6,7 +6,7 @@
     flex-direction: column;
     justify-content: space-between;
     transition: all 0.2s;
-    z-index: 10;
+    z-index: 1;
 }
 .start_side[data-hide="false"]{
     width: 12rem;
@@ -14,19 +14,26 @@
 }
 .side_option {
     position: relative;
+    display: flex;
+    flex-direction: row;
     width: 3rem;
     height: 3rem;
     line-height: 3rem;
 }
-.start_side_power ul[data-hide="true"] {
-    opacity: 0;
-    height: 4rem;
+.side_option[data-hide="false"]{
+    width: 100%;
 }
-.start_side_user ul[data-hide="true"] {
+.side_option[data-hide="true"] > span{
     opacity: 0;
-    height: 4rem;
 }
-.start_side_bottom ul {
+
+
+.start_side_text{
+    position: absolute;
+    left: 3rem;
+    color: white;
+}
+.start_side_bottom ul{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -36,13 +43,51 @@
     position: absolute;
     bottom: 3.1rem;
     overflow: hidden;
-    background-color: white;
+    background-color: rgb(43, 43, 43);
     transition: all 0.2s;
     z-index: 10;
-    padding: 0.5rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.5rem;
+    color: white;
+    font-size: 0.5rem;
+}
+.start_side_bottom ul[data-hide="true"]{
+    opacity: 0;
+    height: 0;
 }
 .start_side_bottom ul li {
     display: block;
-    height: 2.5rem;
-    line-height: 2.5rem;
+    height: 2rem;
+    line-height: 2rem;
+    padding-left: 0.5rem;
 }
+
+
+.side_icon{
+    width: 3rem;
+    height: 3rem;
+    overflow: hidden;
+}
+.side_icon .icon{
+    width: 100%;
+    height: 100%;
+    background-size: 1.2rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translate(3rem,0);
+    filter: drop-shadow(-3rem 0 white);
+}
+.open_icon .icon{
+    background-image: url(../../img/options/icon-open-48.png);
+}
+.user_icon .icon{
+    background-size: 1rem;
+    background-image: url(../../img/options/icons8-users-settings-64.png);
+}
+.setting_icon .icon{
+    background-image: url(../../img/options/icons8-setting-48.png);
+}
+.power_icon .icon{
+    background-image: url(../../img/options/icons8-power-48.png);
+}
+
