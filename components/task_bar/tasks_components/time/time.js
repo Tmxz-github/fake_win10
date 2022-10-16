@@ -80,6 +80,7 @@ const Time = () => {
             <li
                 className="calendar_day grid date_selected"
                 data-selected={parseInt(task_bar.selected_i) === i}
+                data-this_month={this_month}
                 data-today={day === date.getDate() && task_bar.m === date.getMonth()+1 && task_bar.y === date.getFullYear()}
                 key={i}
             >
@@ -94,7 +95,6 @@ const Time = () => {
                 className="calendar_day_border grid"
                 data-action="DATE_SELECT_TOOGLE"
                 data-selected_i={i}
-                data-this_month={this_month}
                 data-day={day}
                 key={i}
             >
