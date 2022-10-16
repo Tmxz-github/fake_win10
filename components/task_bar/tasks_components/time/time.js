@@ -80,8 +80,8 @@ const Time = () => {
             <li
                 className="calendar_day grid date_selected"
                 data-selected={parseInt(task_bar.selected_i) === i}
-                data-this_month={this_month}
                 data-today={day === date.getDate() && task_bar.m === date.getMonth()+1 && task_bar.y === date.getFullYear()}
+                data-this_month={this_month}
                 key={i}
             >
                 <div>{day}</div>
