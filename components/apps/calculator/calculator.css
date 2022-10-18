@@ -144,43 +144,99 @@ button:focus{
     background-color: rgba(0, 102, 255, 0.4);
 }
 
-.calculator_memory_box{
-    width: 100%;
-    height: 99%;
-    overflow: hidden;
-    position: absolute;
-    bottom: 2px;
-    transition: all 0.3s;
-    background-color: rgb(230, 230, 230);
-}
-.calculator_memory_box[data-hide="true"]{
-    height: 50%;
-    opacity: 0;
-    z-index: -1;
-}
 .calculator_history{
     border: 1px solid transparent;
     line-height: 32px;
 }
-.calculator_history_box{
+.calculator_func_box{
     width: 100%;
-    height: 99%;
-    overflow: hidden;
+    height: 100%;
     position: absolute;
-    bottom: 2px;
+    padding-top: 1rem;
+    bottom: .125rem;
     transition: all 0.3s;
     background-color: rgb(230, 230, 230);
+    display: flex;
+    flex-direction: column;
 }
-.calculator_history_box[data-hide="true"]{
+.calculator_func_box[data-hide="true"]{
     height: 50%;
     opacity: 0;
     z-index: -1;
 }
-
-.del_memory[data-show="false"]{
-    display: none;
+.func_list{
+    overflow: scroll;
+    flex: 8.5;
 }
-.del_history[data-show="false"]{
+.func_item{
+    width: 100%;
+    height: 3.75rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-right: .5rem;
+}
+.func_item > div{
+    text-align: right;
+}
+.history_formula{
+    font-size: .75rem;
+}
+.history_result{
+    font-size: 1rem;
+    font-weight: bolder;
+}
+.func_item:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.func_list:hover::-webkit-scrollbar{
+    width: 2px;
+}
+.func_list::-webkit-scrollbar{
+    width: 2px;
+}
+.func_list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.func_list::-webkit-scrollbar-thumb {
+    background: rgb(122, 122, 122);
+}
+.func_bottom_bar{
+    flex: 1.5;
+}
+.func_bottom_bar > .del_key{
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: transparent;
+    float: right;
+}
+.memory_item > div{
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+.memory_item > ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.memory_item .memory_box_M{
+    width: 2rem;
+    height: 1.75rem;
+    visibility: hidden;
+    font-size: .75rem;
+    border: 1px solid rgb(219, 219, 219);
+}
+.memory_item:hover .memory_box_M{
+    visibility: unset;
+}
+.memory_item .memory_box_M:hover{
+    color: white;
+    border: 1px solid rgb(0, 116, 142);
+    background-color: rgb(0, 153, 188);
+}
+
+.del_key[data-show="false"]{
     display: none;
 }
 

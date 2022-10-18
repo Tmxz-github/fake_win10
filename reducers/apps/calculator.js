@@ -30,6 +30,7 @@ const df_state = {
 
     history:[],     //历史记录
     history_box_hide:true,
+    history_clear:false,
 
     mouse_down:false,//鼠标在顶栏开始拖动？
     offsetX:0,
@@ -276,13 +277,13 @@ const calculator = (state = df_state, action) => {
                     calc_state:0,
                 }
             }
-            console.log(CALC_CHAR(calc.last_oper));
             calc.first_num = calc.first_num === "" ? "0" : calc.first_num;
-            console.log(calc.oper,calc.last_oper)
             calc.formula = calc.formula === "" ? calc.first_num + CALC_CHAR(calc.last_oper) 
                                                 : calc.first_num + CALC_CHAR(calc.curr_oper) + calc.second_num + "=";
             // calc.formula = calc.formula === "" ? calc.first_num + CALC_CHAR(calc.last_oper) : calc.formula;
+            if(calc.history_clear) calc.history = [];
             calc.history.push(calc.formula + calc.result);
+            calc.history_clear = false;
             // calc.formula = "";
             calc.first_num = calc.curr_num;
             calc.calc_state = 3;
@@ -427,6 +428,7 @@ const calculator = (state = df_state, action) => {
         }
         case "DEL_HISTORY":{
             calc.history = [];
+            calc.history_clear = true;
             return calc;
         }
         default:

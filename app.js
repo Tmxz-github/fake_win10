@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux'
-import allActions from './actions'
+// import allActions from './actions'
 
 import { Task_bar, Desk, Draw, Start_menu, Calculator, Context_menu } from './components/index';
 

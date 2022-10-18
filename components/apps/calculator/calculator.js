@@ -71,12 +71,48 @@ const Calculator = () => {
 
     const memories = calculator.memory.map((mem,index) => {
         return (
-            <li key={index}>{mem}</li>
+            <li
+                className="memory_item func_item"
+                key={index}
+            >
+                <div>{mem}</div>
+                <ul>
+                    <li>
+                        <button
+                            className="key memory_box_M MC"
+                            data-action="MC"
+                        >MC</button>
+                    </li>
+                    <li>
+                        <button
+                            className="key memory_box_M M+"
+                            data-action="M+"
+                        >M+</button>
+                    </li>
+                    <li>
+                        <button
+                            className="key memory_box_M M-"
+                            data-action="M-"
+                        >M-</button>
+                    </li>
+                </ul>
+            </li>
         )
     }).reverse();
     const history = calculator.history.map((his,index) => {
+        his = his.split("=");
         return (
-            <li key={index}>{his}</li>
+            <li
+                className="history_item func_item"
+                key={index}
+            >
+                <div
+                    className="history_formula"
+                >{his[0]+"="}</div>
+                <div
+                    className="history_result"
+                >{his[1]}</div>
+            </li>
         )
     }).reverse();
     return (
@@ -205,36 +241,40 @@ const Calculator = () => {
                     className="calculator_keyboard"
                 >
                     <div
-                        className="calculator_memory_box"
+                        className="calculator_memory_box calculator_func_box"
                         data-hide={calculator.memory_box_hide}
                         style={{ "--prefix": "MEM_BOX" }}
                     >
-                        <ul>
-                        {memories.length === 0 ? 
+                        <ul
+                            className="history_list func_list"
+                        >
+                            {memories.length === 0 ? 
                             "内存中没有内容" : 
                             memories}
                         </ul>  
-                        <div className="memory_bottom_bar">
+                        <div className="memory_bottom_bar func_bottom_bar">
                             <button
-                                className="key del_memory"
+                                className="key del_memory del_key"
                                 data-action="DEL_MEMORY"
                                 data-show={!(memories.length === 0)}
                             >删除</button>
                         </div>
                     </div>
                     <div
-                        className="calculator_history_box"
+                        className="calculator_history_box calculator_func_box"
                         data-hide={calculator.history_box_hide}
                         style={{ "--prefix": "HISTORY_CALC" }}
                     >
-                        <ul>
+                        <ul
+                            className="history_list func_list"
+                        >
                             {history.length === 0 ? 
                             "尚无历史记录" : 
                             history}
                         </ul>
-                        <div className="history_bottom_bar">
+                        <div className="history_bottom_bar func_bottom_bar">
                             <button
-                                className="key del_history"
+                                className="key del_history del_key"
                                 data-action="DEL_HISTORY"
                                 data-show={!(history.length === 0)}
                             >删除</button>

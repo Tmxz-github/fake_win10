@@ -21,7 +21,7 @@ const Desk = () => {
                     <div
                         data-action="APP_OPEN"
                         data-name="CALCULATOR"
-                        className="calculator_desk_icon icon_img"
+                        className="calculator_desk_icon"
                     ></div>
                     <span
                         data-action="APP_OPEN"
@@ -38,7 +38,7 @@ const Desk = () => {
                     <div
                         data-action="APP_OPEN"
                         data-name="DRAW"
-                        className="draw_desk_icon icon_img"
+                        className="draw_desk_icon"
                     ></div>
                     <span
                         data-action="APP_OPEN"
