@@ -1,0 +1,66 @@
+/* 360*290 */
+/* 65 95 50 75 */
+
+.wifi_icon .icon{
+    width: 100%;
+    height: 100%;
+    transform: rotate(-47deg) translate(0rem,-5rem);
+    background-image: url(../../../../img/icons8-wi-fi-48.png);
+    filter: drop-shadow(0rem 5rem white);
+    background-size: 1rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.wifi_info{
+    width: 22.5rem;
+    height: 18.125rem;
+    position: absolute;
+    right: 0;
+    bottom: 2.5rem;
+    transition: all 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: var(--theme_bk_color);
+    backdrop-filter: blur(1rem);
+}
+.wifi_info[data-hide="true"]{
+    height: 0;
+    opacity: 0;
+    z-index: -1;
+}
+
+.wifi_info_top{
+    width: 100%;
+    height: 4.0625rem;
+    display: flex;
+    flex-direction: row;
+}
+.wifi_info_top_left{
+    width: 12.5%;
+    height: 100%;
+}
+.wifi_info_icon{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.wifi_info_icon .icon{
+    width: 100%;
+    height: 100%;
+    background-image: url(../../../../img/icons8-wi-fi-48.png);
+    transform: rotate(-47deg) translate(0rem,-5rem);
+    filter: drop-shadow(0rem 5rem white);
+    background-size: 2rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.wifi_info_top_right{
+    width: 87.5%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+/* .wifi_info_top_right > span{
+    display: block;
+    width: 100%;
+    height: 50%;
+} */
