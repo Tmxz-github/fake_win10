@@ -40,10 +40,14 @@ const Tasks_right = () => {
                         </div>
                     </li>
                     <li
-                        className="keyboard task_hover"
+                        className="keyboard task_hover left_task"
                         data-action="FUNCS_INFO_TOOGLE"
                     >
-                        ENG
+                        <div
+                            className="task_bar_left_task_content"
+                        >
+                            ENG
+                        </div>
                     </li>
                     <Time />
                     <Notice />

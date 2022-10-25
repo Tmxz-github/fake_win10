@@ -9,11 +9,11 @@ const Battery = () => {
     
     return (
         <li
-            className="battery task_hover task"
+            className="battery  left_task"
             data-action="FUNCS_INFO_TOOGLE"
         >
             <div
-                className="task_bar_left_task_content"
+                className="task_bar_left_task_content task_hover"
                 data-action="FUNCS_INFO_TOOGLE"
             >
                 <div

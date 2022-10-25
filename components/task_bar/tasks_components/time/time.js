@@ -100,6 +100,7 @@ const Time = () => {
                 </li>
             )
         });
+        console.log(calendar);
         return [calendar,border_items];
     }
 
@@ -110,27 +111,29 @@ const Time = () => {
         dispatch({
             type:"CALENDAR_INIT",
         });
-    }, []);
+        console.log(task_bar.last_month_days);
+    },[]);
     useEffect(() => {
-        set_calendar(update_calendar()[0]);
-        set_border_items(update_calendar()[1]);
-    },[[],task_bar.m,task_bar.selected_i]);
+        const data = update_calendar()
+        set_calendar(data[0]);
+        set_border_items(data[1]);
+    },[task_bar.m,task_bar.selected_i,task_bar.funcs_info]);
     useEffect(() => {
         const date = new Date();
         setTimeout(() => {
             set_time_s(date.toLocaleTimeString("zh-cn",{
                 hour12:false,
             }));
-        }, 1000);
+        },1000);
     },[time_s]);
 
     return (
         <li
-            className="time task_hover task"
+            className="time left_task"
             data-action="FUNCS_INFO_TOOGLE"
         >
             <div
-                className="task_bar_left_task_content"
+                className="task_bar_left_task_content task_hover"
                 data-action="FUNCS_INFO_TOOGLE"
             >
                 <div

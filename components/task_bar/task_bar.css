@@ -28,9 +28,11 @@
 .task[data-focus="true"]{
     background-color: rgba(255, 255, 255, 0.1);
 }
-.task .task_bar_left_task_content{
+.left_task .task_bar_left_task_content{
     width: 100%;
     height: 100%;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
 }
 .fix_tasks{
     width: 100%;
@@ -91,8 +93,8 @@
 .funcs > ul > li{
     min-width: 1.5rem;
     height: 100%;
-    padding-left: .2rem;
-    padding-right: .2rem;
+    /* padding-left: .2rem;
+    padding-right: .2rem; */
 }
 
 .task_icon{
@@ -118,16 +120,7 @@
     line-height: var(--task_height);
 }
 
-.wifi_icon .icon{
-    width: 100%;
-    height: 100%;
-    transform: rotate(-47deg) translate(0rem,-5rem);
-    background-image: url(../../img/icons8-wi-fi-48.png);
-    filter: drop-shadow(0rem 5rem white);
-    background-size: 1rem;
-    background-repeat: no-repeat;
-    background-position: center;
-}
+
 .volume_icon .icon{
     width: 100%;
     height: 100%;
