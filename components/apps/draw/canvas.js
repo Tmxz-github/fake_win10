@@ -27,10 +27,6 @@ const Canvas = () => {
                 break;
             }
         }
-        // ctx.moveTo(canvas.lastX / canvas.last_scale,canvas.lastY / canvas.last_scale);
-        // ctx.moveTo(canvas.X / canvas.last_scale,canvas.Y / canvas.last_scale);
-        // ctx.moveTo(canvas.lastX,canvas.lastY);
-        // ctx.moveTo(canvas.X,canvas.Y);
         ctx.moveTo(canvas.lastX / canvas.scale,canvas.lastY / canvas.scale);
         ctx.lineTo(canvas.X / canvas.scale,canvas.Y / canvas .scale);
         ctx.closePath();

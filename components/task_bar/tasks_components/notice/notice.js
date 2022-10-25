@@ -40,13 +40,18 @@ const Notice = () => {
             data-action="FUNCS_INFO_TOOGLE"
         >
             <div
-                className="notice_icon  icon_continer"
+                className="task_bar_left_task_content"
                 data-action="FUNCS_INFO_TOOGLE"
             >
                 <div
-                    className="icon"
+                    className="notice_icon  icon_continer"
                     data-action="FUNCS_INFO_TOOGLE"
-                ></div>
+                >
+                    <div
+                        className="icon"
+                        data-action="FUNCS_INFO_TOOGLE"
+                    ></div>
+                </div>
             </div>
             <div
                 className="notice_info"

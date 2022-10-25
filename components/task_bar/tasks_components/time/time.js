@@ -60,54 +60,61 @@ const Time = () => {
         let s = M+"月"+D;
         return [f,s];
     }
+    const update_calendar = () => {
+        let lis = [];
+        for (let date = task_bar.last_month_days - task_bar.week_day + 2; date <= task_bar.last_month_days; date++){
+            lis.push(date);
+        }//获取上个月显示的天数
+        for (let date = 1; date <= task_bar.this_month_days; date++){
+            lis.push(date);
+        }//获取本月显示的天数
+        for (let date = 1; date <= (CALENDAR_ITEMS_NUM - task_bar.week_day + 1 - task_bar.this_month_days); date++){
+            lis.push(date);
+        }//获取下月显示的天数
+        let this_month = false;
+        const calendar = lis.map((day,i) => {
+            if(day === 1){
+                this_month = !this_month;
+            }
+            return (
+                <li
+                    className="calendar_day grid date_selected"
+                    data-selected={parseInt(task_bar.selected_i) === i}
+                    data-today={day === date.getDate() && task_bar.m === date.getMonth()+1 && task_bar.y === date.getFullYear()}
+                    data-this_month={this_month}
+                    key={i}
+                >
+                    <div>{day}</div>
+                </li>
+            )
+        });
+        const border_items = lis.map((day,i) => {
+            return (
+                <li
+                    className="calendar_day_border grid"
+                    data-action="DATE_SELECT_TOOGLE"
+                    data-selected_i={i}
+                    data-day={day}
+                    key={i}
+                >
+                </li>
+            )
+        });
+        return [calendar,border_items];
+    }
 
-    let lis = [];
-    for (let date = task_bar.last_month_days - task_bar.week_day + 2; date <= task_bar.last_month_days; date++){
-        lis.push(date);
-    }//获取上个月显示的天数
-    for (let date = 1; date <= task_bar.this_month_days; date++){
-        lis.push(date);
-    }//获取本月显示的天数
-    for (let date = 1; date <= (CALENDAR_ITEMS_NUM - task_bar.week_day + 1 - task_bar.this_month_days); date++){
-        lis.push(date);
-    }//获取下月显示的天数
-    let this_month = false;
-    const calendar = lis.map((day,i) => {
-        if(day === 1){
-            this_month = !this_month;
-        }
-        return (
-            <li
-                className="calendar_day grid date_selected"
-                data-selected={parseInt(task_bar.selected_i) === i}
-                data-today={day === date.getDate() && task_bar.m === date.getMonth()+1 && task_bar.y === date.getFullYear()}
-                data-this_month={this_month}
-                key={i}
-            >
-                <div>{day}</div>
-            </li>
-        )
-    });
-
-    const border_items = lis.map((day,i) => {
-        return (
-            <li
-                className="calendar_day_border grid"
-                data-action="DATE_SELECT_TOOGLE"
-                data-selected_i={i}
-                data-day={day}
-                key={i}
-            >
-            </li>
-        )
-    });
-
+    const [calendar, set_calendar] = useState();
+    const [border_items, set_border_items] = useState();
 
     useEffect(() => {
         dispatch({
             type:"CALENDAR_INIT",
         });
-    }, [])
+    }, []);
+    useEffect(() => {
+        set_calendar(update_calendar()[0]);
+        set_border_items(update_calendar()[1]);
+    },[[],task_bar.m,task_bar.selected_i]);
     useEffect(() => {
         const date = new Date();
         setTimeout(() => {
@@ -115,22 +122,26 @@ const Time = () => {
                 hour12:false,
             }));
         }, 1000);
-    },[time_s])
+    },[time_s]);
 
     return (
-        
         <li
-        className="time task_hover task"
-        data-action="FUNCS_INFO_TOOGLE"
+            className="time task_hover task"
+            data-action="FUNCS_INFO_TOOGLE"
         >
             <div
-                className="clock_m"
+                className="task_bar_left_task_content"
                 data-action="FUNCS_INFO_TOOGLE"
-            >{get_time()}</div>
-            <div
-                className="date"
-                data-action="FUNCS_INFO_TOOGLE"
-            >{get_date()}</div>
+            >
+                <div
+                    className="clock_m"
+                    data-action="FUNCS_INFO_TOOGLE"
+                >{get_time()}</div>
+                <div
+                    className="date"
+                    data-action="FUNCS_INFO_TOOGLE"
+                >{get_date()}</div>
+            </div>
             <div
                 className="time_info"
                 data-hide={task_bar.funcs_info !== "time"}

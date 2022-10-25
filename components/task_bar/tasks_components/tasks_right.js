@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { Notice } from "./notice/notice";
 import { Battery } from "./battery/battery";
 import { Time } from "./time/time";
+import { Wifi } from "./wifi/wifi";
 
 
 const Tasks_right = () => {
@@ -19,26 +20,13 @@ const Tasks_right = () => {
             >
                 <ul>
                     <li
-                        className="show_invisible task_hover task"
+                        className="show_invisible task_hover"
                         data-action="FUNCS_INFO_TOOGLE"
                     >^</li>
                     <Battery />
+                    <Wifi />
                     <li
-                        className="wifi task_hover task"
-                        data-action="FUNCS_INFO_TOOGLE"
-                    >
-                        <div
-                            className="wifi_icon icon_continer"
-                            data-action="FUNCS_INFO_TOOGLE"
-                        >
-                            <div
-                                className="icon"
-                                data-action="FUNCS_INFO_TOOGLE"
-                            ></div>
-                        </div>
-                    </li>
-                    <li
-                        className="volume task_hover task"
+                        className="volume task_hover"
                         data-action="FUNCS_INFO_TOOGLE"
                     >
                         <div
@@ -52,7 +40,7 @@ const Tasks_right = () => {
                         </div>
                     </li>
                     <li
-                        className="keyboard task_hover task"
+                        className="keyboard task_hover"
                         data-action="FUNCS_INFO_TOOGLE"
                     >
                         ENG
