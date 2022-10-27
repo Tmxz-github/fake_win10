@@ -80,7 +80,7 @@ const Time = () => {
                 <li
                     className="calendar_day grid date_selected"
                     data-selected={parseInt(task_bar.selected_i) === i}
-                    data-today={day === date.getDate() && task_bar.m === date.getMonth()+1 && task_bar.y === date.getFullYear()}
+                    data-today={day === date.getDate() && task_bar.m === date.getMonth()+1 && task_bar.y === date.getFullYear() && this_month}
                     data-this_month={this_month}
                     key={i}
                 >
@@ -100,7 +100,6 @@ const Time = () => {
                 </li>
             )
         });
-        console.log(calendar);
         return [calendar,border_items];
     }
 
@@ -111,7 +110,6 @@ const Time = () => {
         dispatch({
             type:"CALENDAR_INIT",
         });
-        console.log(task_bar.last_month_days);
     },[]);
     useEffect(() => {
         const data = update_calendar()
@@ -129,11 +127,11 @@ const Time = () => {
 
     return (
         <li
-            className="time left_task"
+            className="time task"
             data-action="FUNCS_INFO_TOOGLE"
         >
             <div
-                className="task_bar_left_task_content task_hover"
+                className="task_bar_task_content task_hover"
                 data-action="FUNCS_INFO_TOOGLE"
             >
                 <div

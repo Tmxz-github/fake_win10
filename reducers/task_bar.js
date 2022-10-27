@@ -93,7 +93,6 @@ const task_bar = (state = df_state,action) => {
             }
             tk.d = 1;
             tk.w = (tk.last_week_day + 1) > 7 ? 1 : (tk.last_week_day + 1);
-            console.log(tk.w);
             return tk;
         }
         case "DATE_SELECT_TOOGLE":{

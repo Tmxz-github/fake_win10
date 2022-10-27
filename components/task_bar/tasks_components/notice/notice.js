@@ -36,11 +36,11 @@ const Notice = () => {
 
     return (
         <li
-            className="notice left_task"
+            className="notice task"
             data-action="FUNCS_INFO_TOOGLE"
         >
             <div
-                className="task_bar_left_task_content task_hover"
+                className="task_bar_task_content task_hover"
                 data-action="FUNCS_INFO_TOOGLE"
             >
                 <div

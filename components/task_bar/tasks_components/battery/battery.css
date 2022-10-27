@@ -73,6 +73,7 @@
     font-size: .875rem;
     font-weight: lighter;
 }
+
 .power_mode > input[type="range"]{
     -webkit-appearance: none;
     background-color: transparent;
@@ -102,6 +103,7 @@
     background-color: rgba(255, 255, 255, 0.5);
     height: .125rem;
 }
+
 .power_mode_range_icons{
     display: flex;
     justify-content: space-between;

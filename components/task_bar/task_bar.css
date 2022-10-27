@@ -28,7 +28,7 @@
 .task[data-focus="true"]{
     background-color: rgba(255, 255, 255, 0.1);
 }
-.left_task .task_bar_left_task_content{
+.task .task_bar_task_content{
     width: 100%;
     height: 100%;
     padding-left: 0.2rem;

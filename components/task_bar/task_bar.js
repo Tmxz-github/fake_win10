@@ -18,7 +18,7 @@ const Task_bar = () => {
         if(action_type === "FUNCS_INFO") return;
         dispatch({
             type:e.target.dataset.action || "",
-            payload:e.target.closest(".left_task").classList[0] || "",
+            payload:e.target.closest(".task").classList[0] || "",
         });
         dispatch({
             type:e.target.dataset.g_action || "",

@@ -10,11 +10,11 @@ const Wifi = () => {
 
     return (
         <li
-            className="wifi left_task"
+            className="wifi task"
             data-action="FUNCS_INFO_TOOGLE"
         >
             <div
-                className="task_bar_left_task_content task_hover"
+                className="task_bar_task_content task_hover"
                 data-action="FUNCS_INFO_TOOGLE"
             >
                 <div
