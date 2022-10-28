@@ -129,7 +129,7 @@ const calculator = (state = df_state, action) => {
             calc.hide = true;
             return calc;
         }
-        case "NUM":{
+        case "NUM": {
             switch(calc.calc_state){
                 case -3:{
                     calc.first_num = "";
@@ -182,7 +182,7 @@ const calculator = (state = df_state, action) => {
                 default: return calc;
             }
         }
-        case "BI_OPER":{
+        case "BI_OPER": {
             calc.is_float = false;
             if(calc.first_num === ""){//+
                 calc.first_num = "0";

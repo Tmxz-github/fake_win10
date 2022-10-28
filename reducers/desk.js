@@ -9,7 +9,8 @@ const df_app_state = {
     name:"",
     active:false,
     min:false,
-    focus:true,
+    focus: true,
+    get_key:false,
 }
 
 const open_apps = (state = df_state,action) => {
@@ -79,6 +80,15 @@ const open_apps = (state = df_state,action) => {
         }
         case "SELECT":{
             op_apps.select = action.payload;
+            return op_apps;
+        }
+        case "KEY_DOWN":{
+            op_apps.apps.forEach((app) => {
+                app.get_key = false;
+                if(app["focus"]){
+                    app.get_key = true;
+                }
+            });
             return op_apps;
         }
         default:

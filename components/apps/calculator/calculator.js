@@ -1,10 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 import "./calculator.css"
 
 const Calculator = () => {
     const calculator = useSelector(state => state.calculator);
     const op_apps = useSelector(state => state.open_apps);
+    const app = useSelector(state => state.app);
     const self = op_apps.apps.filter((app) => {
         return app["name"] === "CALCULATOR";
     })[0];
@@ -68,6 +70,65 @@ const Calculator = () => {
         target.style.left = x + "px";
         target.style.top = y + "px";
     }
+    useEffect(() => {
+        if(self){
+            if(self.get_key){
+                let key = app.key_10[app.key_10.length - 1];
+                if("0123456789".indexOf(key) >= 0){
+                    dispatch({
+                        type:"NUM",
+                        payload:key,
+                    });
+                }
+                if("+-*/".indexOf(key) >= 0){
+                    let oper = ";"
+                    switch(key){
+                        case "+":{
+                            oper = "add";
+                            break;
+                        }
+                        case "-":{
+                            oper = "sub";
+                            break;
+                        }
+                        case "*":{
+                            oper = "muti";
+                            break;
+                        }
+                        case "/":{
+                            oper = "division"
+                            break;
+                        }
+                        default:
+                            break;
+                    }
+                    dispatch({
+                        type:"BI_OPER",
+                        payload:oper,
+                    });
+                }
+                if(key === "."){
+                    dispatch({
+                        type:"DOT",
+                        payload:".",
+                    });
+                }
+                if(key === "=" || key === "Enter"){
+                    dispatch({
+                        type:"EQUAL",
+                        payload:"equal",
+                    });
+                }
+                if(key === "Backspace"){
+                    dispatch({
+                        type:"BACK",
+                        payload:"back",
+                    });   
+                }
+            }
+        }
+    },[app.toggle])
+    
 
     const memories = calculator.memory.map((mem,index) => {
         return (

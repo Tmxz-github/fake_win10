@@ -91,12 +91,19 @@ const App = () => {
             type:e.target.dataset.action,
             payload:e.target.dataset.name,
         });
-    }
+	}
+	const keyboard_handle = (e) => {
+		dispatch({
+			type: "KEY_DOWN",
+			payload: e.key,
+		});
+	}
 
 	window.onclick = click_empty;
 	window.oncontextmenu = handle_context_menu;
 	window.onmousedown = to_top;
-	window.ondblclick = dispatch_dbclick
+	window.ondblclick = dispatch_dbclick;
+	window.onkeydown = keyboard_handle;
 
 	return (
 		<div
