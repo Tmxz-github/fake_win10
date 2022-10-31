@@ -4,7 +4,7 @@
 .wifi_icon .icon{
     width: 100%;
     height: 100%;
-    transform: rotate(-47deg) translate(0rem,-5rem);
+    transform: rotate(-47deg) translate(0rem,-6.25rem);
     background-image: url(../../../../img/icons8-wi-fi-48.png);
     filter: drop-shadow(0rem 5rem white);
     background-size: 1rem;
@@ -33,6 +33,7 @@
     height: 4.0625rem;
     display: flex;
     flex-direction: row;
+    padding-top: 1rem;
 }
 .wifi_info_top_left{
     width: 12.5%;
@@ -64,3 +65,8 @@
     width: 100%;
     height: 50%;
 } */
+
+.wifi_reopen_select{
+    display: flex;
+    flex-direction: column;
+}

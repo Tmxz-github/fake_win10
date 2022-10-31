@@ -7,6 +7,10 @@
     user-select: none;
 }
 
+:root{
+    --theme_bk_color:rgba(17, 17, 17, 0.8);
+}
+
 .screen{
     width: 100vw;
     height: 100vh;

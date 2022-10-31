@@ -410,6 +410,7 @@ const calculator = (state = df_state, action) => {
         }
         case "M+":{
             calc.memory_box_using = true;
+            if(calc.memory.length === 0) calc.memory.push("0");
             calc.memory[calc.memory.length - 1] = CALC(calc.memory[calc.memory.length - 1],calc.curr_num,"add");
             return calc;
         }
