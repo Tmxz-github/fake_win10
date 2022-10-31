@@ -1,5 +1,3 @@
-
-
 const df_state = {
     apps:[],
     active_app:"",
@@ -19,7 +17,8 @@ const open_apps = (state = df_state,action) => {
     }
     switch(action.type){
         case "APP_OPEN":{
-            let app_in = false;
+            let app_in = false;//应用已经打开?
+            console.log(action.payload);
             op_apps.apps.forEach((app) => {
                 app["focus"] = false;
                 if(app["name"] === action.payload){

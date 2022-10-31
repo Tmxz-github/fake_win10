@@ -1,15 +1,18 @@
 import { useSelector, useDispatch } from "react-redux";
-import "./widget.css"
+import "./widgets.css"
 
 
 
 const Widget = (args) => {
 
     const op_apps = useSelector(state => state.open_apps);
-    const widget = useSelector(state => state.widget);
+    const widgets = useSelector(state => state.widgets);
     const dispatch = useDispatch();
 
     const app_name = args.app;
+    const wg = widgets.apps.filter((app) => {
+        if(app["name"] === app_name) return app;
+    })[0];
 
     const self = op_apps.apps.filter((app) => {
         return app["name"] === app_name;
@@ -20,6 +23,7 @@ const Widget = (args) => {
         if(key.classList[0] === "win_ctl"){
             dispatch({
                 type:key.dataset.action || "",
+                payload:key.dataset.name || "",
             });
             dispatch({
                 type:key.dataset.g_action || "",
@@ -27,6 +31,7 @@ const Widget = (args) => {
             });
             return;
         }
+        if(args.dispatch_click)args.dispatch_click(e);
     }
     const drag_handle = (e,target) => {
         let x = e.pageX - target.dataset.offsetX;
@@ -39,8 +44,8 @@ const Widget = (args) => {
         <div
             className={`app ${app_name}`}
             onClick={dispatch_click}
-            data-hide={widget.hide}
-            data-max={widget.max}
+            data-hide={wg.hide}
+            data-max={wg.max}
             data-top={self ? self.active : ""}
         >
             <div
@@ -83,6 +88,7 @@ const Widget = (args) => {
                         <li
                             className="win_ctl max"
                             data-action="MAX_TOGGLE"
+                            data-name={app_name}
                         >
                             口
                         </li>
@@ -97,6 +103,7 @@ const Widget = (args) => {
                     </ul>
                 </div>
             </div>
+            {args.info}
         </div>
     )
 }

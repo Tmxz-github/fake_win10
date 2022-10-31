@@ -14,52 +14,37 @@ const Desk = () => {
                 >
                 <div
                     data-action="APP_OPEN"
-                    data-name="CALCULATOR"
+                    data-name="calculator"
                     className="desk_icon calculator_desk hover selected"
-                    data-selected={op_apps.select === "CALCULATOR"}
+                    data-selected={op_apps.select === "calculator"}
                 >
                     <div
                         data-action="APP_OPEN"
-                        data-name="CALCULATOR"
+                        data-name="calculator"
                         className="calculator_desk_icon"
                     ></div>
                     <span
                         data-action="APP_OPEN"
-                        data-name="CALCULATOR"
+                        data-name="calculator"
                         className="calculator_desk_name"
                     >计算器</span>
                 </div>
                 <div
                     data-action="APP_OPEN"
-                    data-name="DRAW"
+                    data-name="draw"
                     className="desk_icon draw_desk hover selected"
                     data-selected={op_apps.select === "DRAW"}
                 >
                     <div
                         data-action="APP_OPEN"
-                        data-name="DRAW"
+                        data-name="draw"
                         className="draw_desk_icon"
                     ></div>
                     <span
                         data-action="APP_OPEN"
-                        data-name="DRAW"
+                        data-name="draw"
                         className="draw_desk_name"
                     >画图</span>
-                </div>
-                <div
-                    data-action="APP_OPEN"
-                    data-name="WIDGET"
-                    className=" hover selected"
-                    data-selected={op_apps.select === "WIDGET"}
-                >
-                    <div
-                        data-action="APP_OPEN"
-                        data-name="WIDGET"
-                    ></div>
-                    <span
-                        data-action="APP_OPEN"
-                        data-name="WIDGET"
-                    >widget</span>
                 </div>
             </div>
             

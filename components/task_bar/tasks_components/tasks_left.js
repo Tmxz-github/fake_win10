@@ -7,26 +7,36 @@ const Tasks_left = () => {
     const dispatch = useDispatch();
 
     
+
     const apps = open_apps.apps.map((app) => {
-        let name = app["name"];
+        let name = app["name"].toLowerCase();
+        let img_path = "";
+        try{
+            img_path = "url("+ require("../../../img/"+name+".png") +")";
+        }
+        catch{
+            img_path = "url("+ require("../../../img/icons8-default-64.png") +")"
+        }
         return (
             <li
                 key={name}
                 data-name={name}
                 data-focus={app["focus"]}
-                data-action={name+"_TOGGLE"}
+                data-action="TOGGLE"
                 data-g_action="APP_MIN"
                 className="task task_hover"
             >
                 <div
                     className="task_icon"
-                    data-action={name+"_TOGGLE"}
+                    data-action={"TOGGLE"}
+                    data-name={name}
                 >
                     <div
                         className="icon"
-                        data-action={name+"_TOGGLE"}
+                        data-action="TOGGLE"
+                        data-name={name}
                         style={{
-                            backgroundImage:"url("+ require("../../../img/"+name.toLowerCase()+".png") +")"
+                            backgroundImage:img_path
                         }}
                     ></div>
                 </div>

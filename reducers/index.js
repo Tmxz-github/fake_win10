@@ -7,7 +7,7 @@ import { draw, canvas } from './apps/draw';
 import { task_bar } from './task_bar';
 import { context_menu } from './context_menu';
 import { app } from './app';
-import { widget } from './container/widget';
+import { widgets } from './container/widgets';
 
 const rootReducer = combineReducers({
     start_menu,
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
     task_bar,
     context_menu,
     app,
-    widget,
+    widgets,
 });
 
 export default rootReducer
