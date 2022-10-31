@@ -1,0 +1,46 @@
+.widget{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+
+
+    /* test style */
+    top: 30vh;
+    left: 30vw;
+    width: 10rem;
+    height: 10rem;
+    border: var(--test_border);
+    background-color: white;
+}
+.widget[data-top="true"]{
+    z-index: 9;
+}
+.widget[data-hide="true"]{
+    display: none;
+}
+.widget[data-max="true"]{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.widget_top_bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 2rem;
+}
+.widget_icon{
+    width: 2rem;
+    height: 2rem;
+}
+.widget_oper_bar{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+.win_ctl{
+    width: 2.5rem;
+}

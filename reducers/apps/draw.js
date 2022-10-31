@@ -2,7 +2,6 @@ const df_state = {
     hide:true,
 
     mouse_down:false,//鼠标在顶栏开始拖动？
-
     
     thickness_hide:true,
     select_pencil_color:true,

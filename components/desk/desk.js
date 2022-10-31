@@ -46,6 +46,21 @@ const Desk = () => {
                         className="draw_desk_name"
                     >画图</span>
                 </div>
+                <div
+                    data-action="APP_OPEN"
+                    data-name="WIDGET"
+                    className=" hover selected"
+                    data-selected={op_apps.select === "WIDGET"}
+                >
+                    <div
+                        data-action="APP_OPEN"
+                        data-name="WIDGET"
+                    ></div>
+                    <span
+                        data-action="APP_OPEN"
+                        data-name="WIDGET"
+                    >widget</span>
+                </div>
             </div>
             
         </div>

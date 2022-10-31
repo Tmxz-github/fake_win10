@@ -2,7 +2,15 @@ import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 // import allActions from './actions'
 
-import { Task_bar, Desk, Draw, Start_menu, Calculator, Context_menu } from './components/index';
+import {
+	Task_bar,
+	Desk,
+	Draw,
+	Start_menu,
+	Calculator,
+	Context_menu,
+	Widget
+} from './components/index';
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -122,6 +130,9 @@ const App = () => {
 			} : null}
 		>
 			<Desk />
+			<Widget
+				app="widget"
+			/>
 			<Calculator />
 			<Draw />
 			<Task_bar />

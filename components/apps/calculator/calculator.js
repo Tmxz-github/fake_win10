@@ -176,6 +176,8 @@ const Calculator = () => {
             </li>
         )
     }).reverse();
+
+    
     return (
         <div
             className="calculator app"

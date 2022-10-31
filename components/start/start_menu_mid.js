@@ -14,6 +14,7 @@ const Start_menu_mid = () => {
                         <li
                             className="app_bar start_hover app"
                             data-action="APP_OPEN"
+                            key={app_name}
                             data-name={app_name.toUpperCase()}
                         >
                             <div
