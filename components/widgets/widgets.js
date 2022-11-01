@@ -39,6 +39,13 @@ const Widget = (args) => {
         target.style.left = x + "px";
         target.style.top = y + "px";
     }
+    let img_path = "";
+        try{
+            img_path = "url("+ require("../../img/"+app_name+".png") +")";
+        }
+        catch{
+            img_path = "url("+ require("../../img/icons8-default-64.png") +")"
+        }
 
     return (
         <div
@@ -73,7 +80,14 @@ const Widget = (args) => {
                 } : null}
             >
                 <div>
-                    <div className="widget_icon">W</div>
+                    <div className="widget_icon">
+                        <div
+                            className="icon"
+                            style={{
+                                backgroundImage: img_path,
+                            }}
+                        ></div>
+                    </div>
                 </div>
                 <div>
                     <ul className="widget_oper_bar">
