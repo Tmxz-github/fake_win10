@@ -145,6 +145,7 @@ const App = () => {
 		>
 			<Desk />
 			<Calculator />
+			<Draw />
 			<Task_bar />
 			<Start_menu />
 			<Context_menu />

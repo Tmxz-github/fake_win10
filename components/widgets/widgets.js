@@ -16,8 +16,7 @@ const Widget = (args) => {
 
     const self = op_apps.apps.filter((app) => {
         return app.name === app_name;
-    });
-    // console.log(self);
+    })[0] || {};
 
     const dispatch_click = (e) => {
         const key = e.target;
