@@ -3,10 +3,6 @@
     height: 31.6rem;
     min-width: 20.5rem;
     min-height: 31.5rem;
-    display: flex;
-    flex-direction: column;
-
-    position: absolute;
 
     top: 10%;
     left: 30%;
@@ -15,10 +11,8 @@
     backdrop-filter: blur(10px);
     border: 1px solid rgba(0, 0, 0, 0.6);
     box-shadow: 0 0 5px rgb(34, 34, 34);
-
-    z-index: 1;
 }
-.calculator[data-top="true"]{
+/* .calculator[data-top="true"]{
     z-index: 9;
 }
 .calculator[data-hide="true"]{
@@ -31,7 +25,7 @@
     margin-bottom: 40px;
     top: 0;
     left: 0;
-}
+} */
 
 
 .calculator_top_bar{

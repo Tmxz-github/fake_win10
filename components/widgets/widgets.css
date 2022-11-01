@@ -2,15 +2,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-
-
-    /* test style */
-    top: 30vh;
-    left: 30vw;
-    width: 10rem;
-    height: 10rem;
-    border: var(--test_border);
-    background-color: white;
+    z-index: 1;
 }
 .widget[data-top="true"]{
     z-index: 9;

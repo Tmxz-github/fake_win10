@@ -2,52 +2,21 @@ li{
     list-style: none;
 }
 .draw{
-    position: absolute;
     width: 1000px;
     height: 500px;
     top: 60px;
     left: 150px;
 
     background-color: white;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    
+    /* justify-content: space-between; */
 
     overflow: hidden;
-
-    z-index: 1;
-}
-.draw[data-top="true"]{
-    z-index: 9;
-}
-.draw[data-hide="true"]{
-    opacity: 0;
-    z-index: -1;
-}
-.draw[data-max="true"]{
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
 }
 
-.draw_top_bar{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    height: 2rem;
-
-    flex: 0 1 auto;
-}
-.draw_top_bar ul{
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-}
-.draw_top_bar ul li{
-    width: 2.5rem;
+.draw_bottom{
+    flex: 1 1 auto;
+    overflow: hidden;
 }
 
 .draw_select_bar{
@@ -121,19 +90,12 @@ li{
 
 .draw_box{
     position: relative;
-    flex: 1 1 auto;
+    height: calc(100% - 160px);
+    /* flex: 1 1 auto; */
     background-color: rgb(211,221,235);
     overflow: scroll;
     padding: 5px;
-    overflow: scroll;
 }
-/* .draw_box div{
-    position: relative;
-    flex: 1 1 auto;
-    background-color: rgb(211,221,235);
-    overflow: scroll;
-    padding: 5px;
-} */
 .draw_board{
     background-color: white;
     cursor: crosshair;

@@ -34,6 +34,11 @@ const Widget = (args) => {
         if(args.dispatch_click)args.dispatch_click(e);
     }
     const drag_handle = (e,target) => {
+        // if (target.dataset.max === "true") {
+        //     target.style.left = 0;
+        //     target.style.top = 0;
+
+        // }
         let x = e.pageX - target.dataset.offsetX;
         let y = e.pageY - target.dataset.offsetY;
         target.style.left = x + "px";
@@ -49,7 +54,7 @@ const Widget = (args) => {
 
     return (
         <div
-            className={`app ${app_name}`}
+            className={`app ${app_name} widget`}
             onClick={dispatch_click}
             data-hide={wg.hide}
             data-max={wg.max}
