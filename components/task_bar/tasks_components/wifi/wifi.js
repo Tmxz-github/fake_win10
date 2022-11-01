@@ -12,18 +12,22 @@ const Wifi = () => {
         <li
             className="wifi task"
             data-action="FUNCS_INFO_TOOGLE"
+            data-name="wifi"
         >
             <div
                 className="task_bar_task_content task_hover"
                 data-action="FUNCS_INFO_TOOGLE"
+                data-name="wifi"
             >
                 <div
                     className="wifi_icon icon_continer"
                     data-action="FUNCS_INFO_TOOGLE"
+                    data-name="wifi"
                 >
                     <div
                         className="icon"
                         data-action="FUNCS_INFO_TOOGLE"
+                    data-name="wifi"
                     ></div>
                 </div>
             </div>

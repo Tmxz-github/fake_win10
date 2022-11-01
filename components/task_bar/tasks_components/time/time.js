@@ -129,18 +129,22 @@ const Time = () => {
         <li
             className="time task"
             data-action="FUNCS_INFO_TOOGLE"
+            data-name="time"
         >
             <div
                 className="task_bar_task_content task_hover"
                 data-action="FUNCS_INFO_TOOGLE"
+                data-name="time"
             >
                 <div
                     className="clock_m"
                     data-action="FUNCS_INFO_TOOGLE"
+                    data-name="time"
                 >{get_time()}</div>
                 <div
                     className="date"
                     data-action="FUNCS_INFO_TOOGLE"
+                    data-name="time"
                 >{get_date()}</div>
             </div>
             <div

@@ -22,6 +22,7 @@ const Tasks_right = () => {
                     <li
                         className="show_invisible task_hover"
                         data-action="FUNCS_INFO_TOOGLE"
+                        data-name="show_invisible"
                     >^</li>
                     <Battery />
                     <Wifi />
@@ -42,6 +43,7 @@ const Tasks_right = () => {
                     <li
                         className="keyboard task_hover task"
                         data-action="FUNCS_INFO_TOOGLE"
+                        data-name="keyboard"
                     >
                         <div
                             className="task_bar_task_content"

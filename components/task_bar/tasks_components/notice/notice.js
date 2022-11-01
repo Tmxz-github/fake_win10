@@ -38,18 +38,22 @@ const Notice = () => {
         <li
             className="notice task"
             data-action="FUNCS_INFO_TOOGLE"
+            data-name="notice"
         >
             <div
                 className="task_bar_task_content task_hover"
                 data-action="FUNCS_INFO_TOOGLE"
+                data-name="notice"
             >
                 <div
                     className="notice_icon  icon_continer"
                     data-action="FUNCS_INFO_TOOGLE"
+                    data-name="notice"
                 >
                     <div
                         className="icon"
                         data-action="FUNCS_INFO_TOOGLE"
+                        data-name="notice"
                     ></div>
                 </div>
             </div>
