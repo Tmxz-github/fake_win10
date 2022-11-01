@@ -15,8 +15,9 @@ const Widget = (args) => {
     })[0];
 
     const self = op_apps.apps.filter((app) => {
-        return app["name"] === app_name;
-    })[0];
+        return app.name === app_name;
+    });
+    // console.log(self);
 
     const dispatch_click = (e) => {
         const key = e.target;
@@ -34,23 +35,18 @@ const Widget = (args) => {
         if(args.dispatch_click)args.dispatch_click(e);
     }
     const drag_handle = (e,target) => {
-        // if (target.dataset.max === "true") {
-        //     target.style.left = 0;
-        //     target.style.top = 0;
-
-        // }
         let x = e.pageX - target.dataset.offsetX;
         let y = e.pageY - target.dataset.offsetY;
         target.style.left = x + "px";
         target.style.top = y + "px";
     }
     let img_path = "";
-        try{
-            img_path = "url("+ require("../../img/"+app_name+".png") +")";
-        }
-        catch{
-            img_path = "url("+ require("../../img/icons8-default-64.png") +")"
-        }
+    try{
+        img_path = "url("+ require("../../img/"+app_name+".png") +")";
+    }
+    catch{
+        img_path = "url("+ require("../../img/icons8-default-64.png") +")"
+    }
 
     return (
         <div
@@ -58,21 +54,21 @@ const Widget = (args) => {
             onClick={dispatch_click}
             data-hide={wg.hide}
             data-max={wg.max}
-            data-top={self ? self.active : ""}
+            data-top={self ? self.focus : ""}
         >
             <div
                 className="widget_top_bar"
                 onMouseDown={(e) => {
                     dispatch({
                         type: "TOP_MOUSE_DOWN",
-                        payload: e,
-                        app: app_name
+                        payload: app_name,
+                        e: e,
                     });
                 }}
                 onMouseUp={() => {
                     dispatch({
                         type: "TOP_MOUSE_UP",
-                        app: app_name
+                        payload: app_name
                     });
                 }}
                 onMouseOut={() => {
@@ -80,7 +76,7 @@ const Widget = (args) => {
                         type: "TOP_MOUSE_UP",
                     });
                 }}
-                onMouseMove={op_apps.active_app === app_name ? (e) => {
+                onMouseMove={self.moving ? (e) => {
                     drag_handle(e,e.target.closest(`.${app_name}`));
                 } : null}
             >

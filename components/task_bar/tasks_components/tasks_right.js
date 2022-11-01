@@ -29,14 +29,17 @@ const Tasks_right = () => {
                     <li
                         className="volume task_hover"
                         data-action="FUNCS_INFO_TOOGLE"
+                        data-name="volume"
                     >
                         <div
                             className="volume_icon icon_continer"
                             data-action="FUNCS_INFO_TOOGLE"
+                            data-name="volume"
                         >
                             <div
                                 className="icon"
                                 data-action="FUNCS_INFO_TOOGLE"
+                                data-name="volume"
                             ></div>
                         </div>
                     </li>
