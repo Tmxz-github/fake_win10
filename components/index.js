@@ -5,6 +5,7 @@ import { Desk } from "./desk/index";
 import { Start_menu } from "./start/index";
 import { Task_bar } from "./task_bar/index";
 import { Widget } from "./widgets/widgets";
+import { Mine_sweeper } from "./apps/index";
 
 export {
     Calculator,
@@ -12,4 +13,5 @@ export {
     Desk, Start_menu,
     Task_bar,
     Widget,
+    Mine_sweeper,
 }

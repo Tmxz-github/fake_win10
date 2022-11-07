@@ -1,0 +1,73 @@
+:root{
+    --bgc_blue:rgb(0, 85, 230);
+    --bgc_grey_shllow:rgb(192, 192, 192);
+    --bgc_grey_deep:rgb(128, 128, 128);
+}
+
+.mine_sweeper{
+    width: 14rem;
+    height: 20.25rem;
+    border-width: 0.2rem;
+    border-style: solid;
+    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+    border-top: 0px solid transparent;
+    border-left: 0px solid transparent;
+    border-right-color: var(--bgc_blue);
+    border-bottom-color: var(--bgc_blue);
+}
+.mine_sweeper_top_bar{
+    background-color: var(--bgc_blue);
+}
+.mine_sweeper .content{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.mine_sweeper_tool_bar{
+    width: 100%;
+    height: 2rem;
+    border: 1px solid black;
+}
+
+
+.mine_sweeper_game{
+    flex: 1 1 auto;
+    padding-top: 0.2rem;
+    padding-left: 0.2rem;
+}
+.mine_sweeper_game_area{
+    width: 100%;
+    height: 100%;
+    border: .3rem solid var(--bgc_grey_shllow);
+    display: flex;
+    flex-direction: column;
+}
+.mine_sweeper_status{
+    width: 100%;
+    height: 2rem;
+    border-width: .125rem;
+    border-style: solid;
+    border-top-color: var(--bgc_grey_deep);
+    border-left-color: var(--bgc_grey_deep);
+    border-right-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    background-color: var(--bgc_grey_shllow);
+}
+.mine_sweeper_game .mid_bar{
+    width: 100%;
+    height: 0.3rem;
+    background-color: var(--bgc_grey_shllow);
+}
+.mine_area{
+    flex: 1 1 auto;
+    border-width: .25rem;
+    border-style: solid;
+    border-top-color: var(--bgc_grey_deep);
+    border-left-color: var(--bgc_grey_deep);
+    border-right-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    background-color: var(--bgc_grey_shllow);
+}
+

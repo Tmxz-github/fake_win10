@@ -9,6 +9,7 @@ import {
 	Start_menu,
 	Calculator,
 	Context_menu,
+	Mine_sweeper,
 } from './components/index';
 
 const App = () => {
@@ -85,20 +86,6 @@ const App = () => {
 			});
 		}
 	}
-	// const dispatch_dbclick = (e) => {
-	// 	if(e.target.dataset.action != "APP_OPEN") return;
-    //     dispatch({
-    //         type:"TO_TOP",
-    //         payload:e.target.dataset.name,
-    //     });
-    //     dispatch({
-    //         type:e.target.dataset.name+"_OPEN",
-    //     });
-    //     dispatch({
-    //         type:e.target.dataset.action,
-    //         payload:e.target.dataset.name,
-    //     });
-	// }
 	const dispatch_dbclick = (e) => {
 		if(e.target.dataset.action != "APP_OPEN") return;
         dispatch({
@@ -149,6 +136,7 @@ const App = () => {
 			<Task_bar />
 			<Start_menu />
 			<Context_menu />
+			<Mine_sweeper />
 		</div>
 	)
 }

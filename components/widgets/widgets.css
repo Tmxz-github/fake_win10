@@ -2,13 +2,17 @@
     position: absolute;
     display: flex;
     flex-direction: column;
+    left: 20%;
+    top: 20%;
+    background-color: white;
     z-index: 1;
 }
 .widget[data-top="true"]{
     z-index: 9;
 }
 .widget[data-hide="true"]{
-    display: none;
+    opacity: 0;
+    z-index: -1;
 }
 .widget[data-max="true"]{
     width: 100%;

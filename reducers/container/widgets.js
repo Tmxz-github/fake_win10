@@ -6,8 +6,14 @@ const app_widget_state = {
 const df_state = {
     apps:[
         {...app_widget_state,name:"calculator"},
-        {...app_widget_state,name:"draw"},
+        {...app_widget_state, name:"draw"},
+        {...app_widget_state,name:"mine_sweeper"},
     ],
+    default: {
+        name:"widget",
+        hide:true,
+        max:false,
+    }
 }
 
 const widgets = (state = df_state, action) => {

@@ -11,8 +11,8 @@ const Widget = (args) => {
 
     const app_name = args.app;
     const wg = widgets.apps.filter((app) => {
-        if(app["name"] === app_name) return app;
-    })[0];
+        return app["name"] === app_name;
+    })[0] || widgets.default;
 
     const self = op_apps.apps.filter((app) => {
         return app.name === app_name;
@@ -56,7 +56,7 @@ const Widget = (args) => {
             data-top={self ? self.focus : ""}
         >
             <div
-                className="widget_top_bar"
+                className={`${app_name}_top_bar widget_top_bar`}
                 onMouseDown={(e) => {
                     dispatch({
                         type: "TOP_MOUSE_DOWN",

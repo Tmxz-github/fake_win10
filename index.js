@@ -6,7 +6,11 @@ import rootReducer from './reducers';
 import App from "./app.js"
 import "./index.css"
 
-
+Array.prototype.my_forEach = function(fn){
+    for(let i = 0; i < this.length; i++){
+        fn(this[i], i, this);
+    }
+}
 
 const store = createStore(rootReducer);
 
