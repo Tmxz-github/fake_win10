@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Widget } from "../../widgets/widgets";
 import { Mine_area } from "./mine_area";
 
@@ -11,6 +11,8 @@ const Mine_sweeper = () => {
 
     const dispatch = useDispatch();
     const ms = useSelector(state => state.mine_sweeper);
+    let [mine_sweeper_time, set_mine_sweeper_time] = useState(0);
+    const [mine_sweeper_time_id, set_mine_sweeper_time_id] = useState(null);
     let game_state = "INIT";
     switch(ms.game_state){
         case 0: {
@@ -22,7 +24,7 @@ const Mine_sweeper = () => {
             break;
         }
         case -1: {
-            game_state = "GAME_OVER";
+            game_state = "OVER";
             break;
         }
         case 2: {
@@ -42,6 +44,35 @@ const Mine_sweeper = () => {
         }
     }
 
+    useEffect(() => {
+        switch(ms.game_state){
+            case 0:{
+                clearInterval(mine_sweeper_time_id);
+                set_mine_sweeper_time(0);
+                set_mine_sweeper_time_id(null);
+                break;
+            }
+            case 1:{
+                let mine_sweeper_time_id = setInterval(() => {
+                    set_mine_sweeper_time(++mine_sweeper_time);
+                }, 1000);
+                set_mine_sweeper_time_id(mine_sweeper_time_id);
+                break;
+            }
+            case -1:
+            case 2:{
+                clearInterval(mine_sweeper_time_id);
+                break;
+            }
+            default:{
+                break;
+            }
+        }
+        if(ms.game_state === 1){
+            
+        }
+    }, [ms.game_state])
+
     const content = (
         <div
             className="content"
@@ -60,7 +91,7 @@ const Mine_sweeper = () => {
                         className="mine_sweeper_status"
                     >
                         <div
-                            className="mine_sweeper_left_flags"
+                            className="mine_sweeper_left_flags mine_sweeper_digital_num"
                         >{ms.mine_num - ms.flags}</div>
                         <div
                             className="mine_sweeper_state"
@@ -68,8 +99,8 @@ const Mine_sweeper = () => {
                         >
                         {game_state}</div>
                         <div
-                            className="mine_sweeper_time"
-                        >0</div>
+                            className="mine_sweeper_time mine_sweeper_digital_num"
+                        >{mine_sweeper_time}</div>
                     </div>
                     <div className="mid_bar"></div>
                     <div

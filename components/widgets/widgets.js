@@ -20,6 +20,10 @@ const Widget = (args) => {
 
     const dispatch_click = (e) => {
         const key = e.target;
+        dispatch({
+            type: "TO_TOP",
+            payload: app_name,
+        });
         if(key.classList[0] === "win_ctl"){
             dispatch({
                 type:key.dataset.action || "",

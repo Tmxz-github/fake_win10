@@ -10,19 +10,20 @@ const Mine_area = () => {
     let map = ms.map;
 
     const canvasRef = useRef(null);
+    const canvas_node = canvasRef.current;
+    const context = canvas_node.getContext("2d");
 
     const draw_num = (x, y, num, ctx) => {
         ctx.fillStyle = "#c0c0c0";
-        ctx.fillRect(x * 22.2,y * 22.2, 22, 22);
+        ctx.fillRect(x * 22,y * 22, 22, 22);
         ctx.fillStyle = "#000000";
-        ctx.fillText(num, 7 + x * 22.2, 14 + y * 22.2);
+        ctx.fillText(num, 7 + x * 22, 14 + y * 22);
     }
 
     const open_empty = (col, row, ctx) => {
         let grid = map[row][col];
         if(grid.open) return;
         let x = col, y = row;
-        // debugger
         if(grid.num != 0){
             draw_num(x, y, grid.num, ctx);
             grid.open = true;
@@ -30,10 +31,9 @@ const Mine_area = () => {
         }
         else if(!grid.open){
             ctx.fillStyle = "#c0c0c0";
-            ctx.fillRect(x * 22.2, y * 22.2, 22, 22);
+            ctx.fillRect(x * 22, y * 22, 22, 22);
             grid.open = true;
         }
-        
         try{
             if(map[row][col - 1]) open_empty(col - 1, row, ctx);
         } catch(err){}//左
@@ -50,6 +50,19 @@ const Mine_area = () => {
         return;
     }
 
+    const init_grid = (x,y) => {
+        context.fillStyle = "#ffffff";
+        context.fillRect(x * 22, y * 22, 22, 2);
+        context.fillRect(x * 22, y * 22, 2, 22);
+
+        context.fillStyle = "#c0c0c0";
+        context.fillRect(2 + x * 22, 2 + y * 22, 18, 18);
+
+        context.fillStyle = "#808080";
+        context.fillRect(20 + x * 22, y * 22, 2, 22);
+        context.fillRect(x * 22, 20 + y * 22, 22, 2);
+    }
+
     const click_handle = (e) => {
         if(ms.game_state === 0){
             dispatch({
@@ -63,7 +76,6 @@ const Mine_area = () => {
             return;
         }
 
-        const context = e.target.getContext("2d");
         let col = Math.floor(e.nativeEvent.layerX / 22), row = Math.floor(e.nativeEvent.layerY / 22);
         let x = col, y = row;
         let grid = map[row][col];
@@ -74,10 +86,21 @@ const Mine_area = () => {
             grid.open = true;
         }
         else if(grid.mine){
-            context.fillStyle = "#c0c0c0";
-            context.fillRect(x * 22.2, y * 22.2, 22, 22);
-            context.fillStyle = "#000000";
-            context.fillRect(8 + x * 22.2, 8 + y * 22.2, 6, 6);
+            map.forEach((row,y) => {
+                row.forEach((grid,x) => {
+                    grid.context = 0;
+                    if(grid.mine){
+                        context.fillStyle = "#c0c0c0";
+                        context.fillRect(x * 22, y * 22, 22, 22);
+
+                        context.fillStyle = "#000000";
+                        context.fillRect(7 + x * 22, 7 + y * 22, 8, 8);
+                        context.fillRect(7 + x * 22, 7 + y * 22, 8, 8);
+                    }
+                });
+            });
+            context.fillStyle = "#ff0000";
+            context.fillRect(4 + x * 22, 4 + y * 22, 14, 14);
             grid.open = true;
             dispatch({
                 type: "MINE",
@@ -96,15 +119,15 @@ const Mine_area = () => {
         if(grid.open) return;
 
         ctx.fillStyle = "#ffffff";
-        ctx.fillRect(x * 22.2, y * 22.2, 22.2, 2);
-        ctx.fillRect(x * 22.2, y * 22.2, 2, 22.2);
+        ctx.fillRect(x * 22, y * 22, 22, 2);
+        ctx.fillRect(x * 22, y * 22, 2, 22);
 
         ctx.fillStyle = "#c0c0c0";
-        ctx.fillRect(2 + x * 22.2, 2 + y * 22.2, 18, 18);
+        ctx.fillRect(2 + x * 22, 2 + y * 22, 18, 18);
 
         ctx.fillStyle = "#808080";
-        ctx.fillRect(20 + x * 22.2, y * 22.2, 2, 22.2);
-        ctx.fillRect(x * 22.2, 20 + y * 22.2, 22.2, 2);
+        ctx.fillRect(20 + x * 22, y * 22, 2, 22);
+        ctx.fillRect(x * 22, 20 + y * 22, 22, 2);
 
 
         if(grid.context === 0) {
@@ -122,15 +145,13 @@ const Mine_area = () => {
         else if(grid.context === 2) {
             grid.context = 0;
         }
-        // grid.context = grid.context + 1 > 2 ? 0 : grid.context + 1;
 
         switch(grid.context){
             case 0: {
                 break;
             }
             case 1: {
-                // ctx.fillStyle = "#cc0000";
-                ctx.fillText("🚩", 7 + x * 22.2, 14 + y * 22.2);
+                ctx.fillText("🚩", 7 + x * 22, 14 + y * 22);
                 if(grid.mine){
                     dispatch({
                         type: "MINE_RIGHT_INCRESMENT",
@@ -140,7 +161,7 @@ const Mine_area = () => {
             }
             case 2: {
                 ctx.fillStyle = "#000000";
-                ctx.fillText("?", 7 + x * 22.2, 14 + y * 22.2);
+                ctx.fillText("?", 7 + x * 22, 14 + y * 22);
                 if(grid.mine){
                     dispatch({
                         type: "MINE_RIGHT_DECRESMENT",
@@ -154,10 +175,6 @@ const Mine_area = () => {
         }
     }
 
-    const draw = (ctx) => {
-    }
-    
-
     useEffect(() => {
         dispatch({
             type: "MINE_INIT",
@@ -168,29 +185,29 @@ const Mine_area = () => {
             dispatch({
                 type: "MINE_SWEEPER_WIN",
             });
+            map.forEach((row,y) => {
+                row.forEach((grid,x) => {
+                    if(grid.mine){
+                        grid.context = 0;
+                        init_grid(x,y);
+                        context.fillStyle = "#000000";
+                        context.fillRect(7 + x * 22, 7 + y * 22, 8, 8);
+                        context.fillRect(7 + x * 22, 7 + y * 22, 8, 8);
+                    }
+                });
+            });
         }
     }, [ms.right])
     useEffect(() => {
-        const canvas_node = canvasRef.current;
-        const context = canvas_node.getContext("2d");
-        map.my_forEach((row,y) => {
-            row.my_forEach((grid, x) => {
-                context.fillStyle = "#ffffff";
-                context.fillRect(x * 22.2, y * 22.2, 22.2, 2);
-                context.fillRect(x * 22.2, y * 22.2, 2, 22.2);
+        map.forEach((row,y) => {
+            row.forEach((grid, x) => {
+                init_grid(x,y);
 
-                context.fillStyle = "#c0c0c0";
-                context.fillRect(2 + x * 22.2, 2 + y * 22.2, 18, 18);
-
-                context.fillStyle = "#808080";
-                context.fillRect(20 + x * 22.2, y * 22.2, 2, 22.2);
-                context.fillRect(x * 22.2, 20 + y * 22.2, 22.2, 2);
-
-                if(grid.mine) {
-                    context.fillStyle = "#000000";
-                    context.fillRect(7 + x * 22.2, 7 + y * 22.2, 8, 8);
-                    context.fillRect(7 + x * 22.2, 7 + y * 22.2, 8, 8);
-                }
+                // if(grid.mine){
+                //     context.fillStyle = "#ffffff";
+                //     context.fillRect(7 + x * 22, 7 + y * 22, 8, 8);
+                //     context.fillRect(7 + x * 22, 7 + y * 22, 8, 8);
+                // }
             })
         });
     }, [map]);
@@ -199,8 +216,8 @@ const Mine_area = () => {
         <canvas
             className="mine_area_canvas"
             ref={canvasRef}
-            width="200px"
-            height="200px"
+            width="198px"
+            height="198px"
             onClick={ms.game_state === -1 ? null : click_handle}
             onContextMenu={ms.game_state === -1 ? null : context_click_handle}
         />

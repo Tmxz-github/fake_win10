@@ -3,6 +3,10 @@
     --bgc_grey_shllow:rgb(192, 192, 192);
     --bgc_grey_deep:rgb(128, 128, 128);
 }
+@font-face{
+    font-family:"digital-clock-font";
+    src: url(../../../fonts/digital-7/digital-7.ttf);
+}
 
 .mine_sweeper{
     width: 14rem;
@@ -60,14 +64,20 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.mine_sweeper_left_flags{
+.mine_sweeper_status > div{
+    text-align: center;
+}
+.mine_sweeper_digital_num{
+    font-family:'digital-clock-font';
+    color: red;
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: bolder;
     width: 30%;
+    background-color: black;
 }
 .mine_sweeper_state{
     width: 40%;
-}
-.mine_sweeper_time{
-    width: 30%;
 }
 
 .mine_sweeper_game .mid_bar{
@@ -84,6 +94,10 @@
     border-right-color: rgb(255, 255, 255);
     border-bottom-color: rgb(255, 255, 255);
     background-color: var(--bgc_grey_shllow);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 

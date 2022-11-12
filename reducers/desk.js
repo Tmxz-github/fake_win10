@@ -15,6 +15,18 @@ class App{
     }
 }
 
+function to_top(name,op_apps){
+    op_apps.apps.forEach((app) => {
+        if(app.name === name){
+            app.focus = true;
+        }
+        else{
+            app.focus = false;
+        }
+    });
+    return op_apps;
+}
+
 const open_apps = (state = df_state,action) => {
     let op_apps = {
         ...state
@@ -26,7 +38,7 @@ const open_apps = (state = df_state,action) => {
                 name:name,
             });
             op_apps.apps.push(app);
-            return op_apps;
+            return to_top(name,op_apps);
         }
         case "APP_CLOSE":{
             let name = action.payload;
@@ -86,16 +98,7 @@ const open_apps = (state = df_state,action) => {
         }
         case "TO_TOP":{
             let name = action.payload;
-            op_apps.apps.forEach((app) => {
-                if(app.name === name){
-                    app.focus = true;
-                }
-                else{
-                    app["active"] = false;
-                    app["focus"] = false;
-                }
-            });
-            return op_apps;
+            return to_top(name,op_apps);
         }
         case "SELECT":{
             let name = action.payload;

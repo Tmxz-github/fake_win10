@@ -35,7 +35,7 @@ const mine_sweeper = (state = df_state, action) => {
                 let is_in = false;
                 tmp.push(parseInt(Math.abs(Math.random() * 10 - 2)));
                 tmp.push(parseInt(Math.abs(Math.random() * 10 - 2)));
-                coord.my_forEach((xy) => {
+                coord.forEach((xy) => {
                     if (xy[0] === tmp[0] && xy[1] === tmp[1]) {
                         is_in = true;
                         return;
@@ -50,12 +50,12 @@ const mine_sweeper = (state = df_state, action) => {
                 }
                 map.push(row);
             }
-            coord.my_forEach((xy) => {
+            coord.forEach((xy) => {
                 map[xy[0]][xy[1]].mine = true;
             });
 
-            map.my_forEach((row, i) => {
-                row.my_forEach((grid, j) => {
+            map.forEach((row, i) => {
+                row.forEach((grid, j) => {
                     let num = 0;
                     if(!grid.mine){
                         try{
