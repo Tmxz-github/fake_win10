@@ -7,6 +7,13 @@ const Desk = () => {
     const op_apps = useSelector(state => state.open_apps);
     
     const apps = widgets.apps.map((app) => {
+        let img_path = "";
+        try{
+            img_path = "url("+ require("../../img/"+app.name+".png") +")";
+        }
+        catch{
+            img_path = "url("+ require("../../img/icons8-default-64.png") +")"
+        }
         return (
             <li
                 className="desk_icons"
@@ -20,12 +27,15 @@ const Desk = () => {
                     <div
                         data-action="APP_OPEN"
                         data-name={app.name}
+                        style={{
+                            backgroundImage: img_path,
+                        }}
                         className={`${app.name}_desk_icon`}
                     ></div>
                     <span
                         data-action="APP_OPEN"
                         data-name={app.name}
-                        className="calculator_desk_name"
+                        className={`${app.name}_desk_name`}
                     >{app.name}</span>
                 </div>
             </li>

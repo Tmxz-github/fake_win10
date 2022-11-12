@@ -73,27 +73,27 @@ const open_apps = (state = df_state,action) => {
             elem.dataset.offsetX = e.pageX - elem.offsetLeft;
             elem.dataset.offsetY = e.pageY - elem.offsetTop;
 
-            let index = 0;
+            let index = -1;
             op_apps.apps.forEach((app,i) => {
                 if(app.name === name){
                     index = i;
                     return;
                 }
             });
-            op_apps.apps[index].moving = true;
+            if(index != -1) op_apps.apps[index].moving = true;
 
             return op_apps;
         }
         case "TOP_MOUSE_UP": {
             let name = action.payload;
-            let index = 0;
+            let index = -1;
             op_apps.apps.forEach((app,i) => {
                 if(app.name === name){
                     index = i;
                     return;
                 }
             });
-            op_apps.apps[index].moving = false;
+            if(index != -1) op_apps.apps[index].moving = false;
             return op_apps;
         }
         case "TO_TOP":{

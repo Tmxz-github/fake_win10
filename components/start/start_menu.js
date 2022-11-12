@@ -15,12 +15,10 @@ const Start_menu = () => {
     const dispatch_click = (e) => {
         const action = e.target.dataset.action || "";
         const name = e.target.dataset.name || "";
+        console.log(action,name);
         dispatch({
-            type:"TO_TOP",
+            type:"OPEN",
             payload:name,
-        });
-        dispatch({
-            type:name+"_OPEN",
         });
         dispatch({
             type:action,

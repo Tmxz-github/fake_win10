@@ -27,22 +27,22 @@
     border: 1px solid transparent;
     margin-bottom: 2rem;
 }
-.calculator_desk_icon{
+.desk_icon > div{
     width: 3rem;
     height: 3rem;
-    background-image: url(../../img/calculator.png);
     background-size: 2.625rem;
     background-repeat: no-repeat;
     background-position: center;
+}
+/* .calculator_desk_icon{
+    background-image: url(../../img/calculator.png);
 }
 .draw_desk_icon{
-    width: 3rem;
-    height: 3rem;
     background-image: url(../../img/draw.png);
-    background-size: 2.625rem;
-    background-repeat: no-repeat;
-    background-position: center;
 }
+.mine_sweeper_desk_icon{
+    background-image: url(../../img/mine_sweeper.png);
+} */
 
 
 .selected[data-selected="true"]{

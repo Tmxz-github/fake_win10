@@ -89,12 +89,8 @@ const App = () => {
 	const dispatch_dbclick = (e) => {
 		if(e.target.dataset.action != "APP_OPEN") return;
         dispatch({
-            type:"TO_TOP",
-            payload:e.target.dataset.name,
-        });
-        dispatch({
             type:"OPEN",
-            payload:e.target.dataset.name.toLowerCase(),
+            payload:e.target.dataset.name,
         });
         dispatch({
             type:e.target.dataset.action,
