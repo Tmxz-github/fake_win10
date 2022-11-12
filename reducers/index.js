@@ -8,6 +8,7 @@ import { task_bar } from './task_bar';
 import { context_menu } from './context_menu';
 import { app } from './app';
 import { widgets } from './container/widgets';
+import { mine_sweeper } from './apps/mine_sweeper';
 
 const rootReducer = combineReducers({
     start_menu,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
     context_menu,
     app,
     widgets,
+    mine_sweeper,
 });
 
 export default rootReducer

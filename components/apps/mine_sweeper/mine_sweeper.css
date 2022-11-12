@@ -55,7 +55,21 @@
     border-right-color: rgb(255, 255, 255);
     border-bottom-color: rgb(255, 255, 255);
     background-color: var(--bgc_grey_shllow);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
+.mine_sweeper_left_flags{
+    width: 30%;
+}
+.mine_sweeper_state{
+    width: 40%;
+}
+.mine_sweeper_time{
+    width: 30%;
+}
+
 .mine_sweeper_game .mid_bar{
     width: 100%;
     height: 0.3rem;

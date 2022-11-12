@@ -1,38 +1,32 @@
 const df_state = {
-    hide:true,
-
-    mouse_down:false,//鼠标在顶栏开始拖动？
-    
     thickness_hide:true,
     select_pencil_color:true,
-
-    max:false,
 }
 
 const df_canvas = {
     drawing:false,
-    p_color:["0","0","0"],
-    e_color:["255","255","255"],
-    color:["0","0","0"],
-    lastX:0,
+    p_color:["0","0","0"],//铅笔颜色
+    e_color:["255","255","255"],//橡皮颜色
+    color:["0","0","0"],//用户选择的颜色
+    lastX:0,//画笔轨迹
     lastY:0,
     X:0,
-    Y:0,
+    Y:0,//画笔轨迹
     show_position:false,
-    width:900,
-    height:300,
-    thickness:2,
-    type:"pencil",
+    width:900,//画布初始宽
+    height:300,//画布初始高
+    thickness:2,//笔粗
+    type:"pencil",//笔类型
 
-    extending:false,
+    extending:false,//画布在扩张?
     extend_start_position:[0,0],
     extend_end_position:[0,0],
-    extend_direction:"both",
-    tmp_W:900,
+    extend_direction:"both",//扩展方向 右 下 右下
+    tmp_W:900,//扩展时预览大小
     tmp_H:300,
 
     resized:false,
-    tmp_cv:null,
+    tmp_cv:null,//扩展时预览画布
 
     is_scale:false,
     last_scale:1,
@@ -45,22 +39,6 @@ const draw = (state = df_state,action) => {
         ...state,
     }
     switch(action.type){
-        case "DRAW_MAX_TOGGLE":{
-            dw.max = !dw.max;
-            return dw;
-        }
-        case "DRAW_TOGGLE":{
-            dw.hide = !dw.hide;
-            return dw;
-        }
-        case "DRAW_OPEN":{
-            dw.hide = false;
-            return dw;
-        }
-        case "DRAW_CLOSE":{
-            dw.hide = true;
-            return dw;
-        }
         case "THICKNESS_TOGGLE":{
             dw.thickness_hide = !dw.thickness_hide;
             return dw;

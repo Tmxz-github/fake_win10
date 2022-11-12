@@ -10,7 +10,6 @@
 */
 const df_state = {
     type:"stander",
-    hide:true,
     calc_state:0,   //计算器状态
     first_num:"",   //输入的第一个数，被操作数
     second_num:"",  //数日的第二个数，操作数
@@ -32,11 +31,9 @@ const df_state = {
     history_box_hide:true,
     history_clear:false,
 
-    mouse_down:false,//鼠标在顶栏开始拖动？
-    offsetX:0,
-    offsetY:0,
-
-    max:false,
+    // mouse_down:false,//鼠标在顶栏开始拖动？
+    // offsetX:0,
+    // offsetY:0,
 }
 
 function UNARY_OPER(oper,num){
@@ -113,22 +110,6 @@ const calculator = (state = df_state, action) => {
         ...state,
     }
     switch(action.type){
-        case "CALCULATOR_MAX_TOGGLE":{
-            calc.max = !calc.max;
-            return calc;
-        }
-        case "CALCULATOR_TOGGLE":{
-            calc.hide = !calc.hide;
-            return calc;
-        }
-        case "CALCULATOR_OPEN":{
-            calc.hide = false;
-            return calc;
-        }
-        case "CALCULATOR_CLOSE":{
-            calc.hide = true;
-            return calc;
-        }
         case "NUM": {
             switch(calc.calc_state){
                 case -3:{
@@ -145,7 +126,6 @@ const calculator = (state = df_state, action) => {
                     for(let arr in df_state){
                         calc[arr] = df_state[arr];
                     }
-                    calc.hide = false;
                     break;
                 }
                 default: break;
@@ -198,7 +178,6 @@ const calculator = (state = df_state, action) => {
                 if(calc.result === "除数不能为0"){
                     return {
                         ...df_state,
-                        hide:calc.hide,
                         curr_num:"除数不能为0",
                         calc_state:0,
                     }
@@ -272,7 +251,6 @@ const calculator = (state = df_state, action) => {
             if(calc.result === "除数不能为0"){
                 return {
                     ...df_state,
-                    hide:calc.hide,
                     curr_num:"除数不能为0",
                     calc_state:0,
                 }
@@ -354,7 +332,6 @@ const calculator = (state = df_state, action) => {
         case "C":{
             return {
                 ...df_state,
-                hide:calc.hide,
                 memory:calc.memory,
                 memory_box_using:calc.memory_box_using,
             };

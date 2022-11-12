@@ -33,7 +33,7 @@ const Widget = (args) => {
         }
         if(args.dispatch_click)args.dispatch_click(e);
     }
-    const drag_handle = (e,target) => {
+    const drag_handle = (e, target) => {
         let x = e.pageX - target.dataset.offsetX;
         let y = e.pageY - target.dataset.offsetY;
         target.style.left = x + "px";
