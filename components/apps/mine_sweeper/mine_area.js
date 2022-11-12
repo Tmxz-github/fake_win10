@@ -10,8 +10,6 @@ const Mine_area = () => {
     let map = ms.map;
 
     const canvasRef = useRef(null);
-    const canvas_node = canvasRef.current;
-    const context = canvas_node.getContext("2d");
 
     const draw_num = (x, y, num, ctx) => {
         ctx.fillStyle = "#c0c0c0";
@@ -51,6 +49,8 @@ const Mine_area = () => {
     }
 
     const init_grid = (x,y) => {
+        const canvas_node = canvasRef.current;
+        const context = canvas_node.getContext("2d");
         context.fillStyle = "#ffffff";
         context.fillRect(x * 22, y * 22, 22, 2);
         context.fillRect(x * 22, y * 22, 2, 22);
@@ -64,6 +64,8 @@ const Mine_area = () => {
     }
 
     const click_handle = (e) => {
+        const canvas_node = canvasRef.current;
+        const context = canvas_node.getContext("2d");
         if(ms.game_state === 0){
             dispatch({
                 type: "MINE_SWEEPER_START",
@@ -112,22 +114,23 @@ const Mine_area = () => {
         }
     }
     const context_click_handle = (e) => {
-        const ctx = e.target.getContext("2d");
+        const canvas_node = canvasRef.current;
+        const context = canvas_node.getContext("2d");
         let col = Math.floor(e.nativeEvent.layerX / 22), row = Math.floor(e.nativeEvent.layerY / 22);
         let x = col, y = row;
         let grid = map[row][col];
         if(grid.open) return;
 
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(x * 22, y * 22, 22, 2);
-        ctx.fillRect(x * 22, y * 22, 2, 22);
+        context.fillStyle = "#ffffff";
+        context.fillRect(x * 22, y * 22, 22, 2);
+        context.fillRect(x * 22, y * 22, 2, 22);
 
-        ctx.fillStyle = "#c0c0c0";
-        ctx.fillRect(2 + x * 22, 2 + y * 22, 18, 18);
+        context.fillStyle = "#c0c0c0";
+        context.fillRect(2 + x * 22, 2 + y * 22, 18, 18);
 
-        ctx.fillStyle = "#808080";
-        ctx.fillRect(20 + x * 22, y * 22, 2, 22);
-        ctx.fillRect(x * 22, 20 + y * 22, 22, 2);
+        context.fillStyle = "#808080";
+        context.fillRect(20 + x * 22, y * 22, 2, 22);
+        context.fillRect(x * 22, 20 + y * 22, 22, 2);
 
 
         if(grid.context === 0) {
@@ -151,7 +154,7 @@ const Mine_area = () => {
                 break;
             }
             case 1: {
-                ctx.fillText("🚩", 7 + x * 22, 14 + y * 22);
+                context.fillText("🚩", 7 + x * 22, 14 + y * 22);
                 if(grid.mine){
                     dispatch({
                         type: "MINE_RIGHT_INCRESMENT",
@@ -160,8 +163,8 @@ const Mine_area = () => {
                 break;
             }
             case 2: {
-                ctx.fillStyle = "#000000";
-                ctx.fillText("?", 7 + x * 22, 14 + y * 22);
+                context.fillStyle = "#000000";
+                context.fillText("?", 7 + x * 22, 14 + y * 22);
                 if(grid.mine){
                     dispatch({
                         type: "MINE_RIGHT_DECRESMENT",
@@ -181,6 +184,8 @@ const Mine_area = () => {
         });
     }, []);//地图初始化
     useEffect(() => {
+        const canvas_node = canvasRef.current;
+        const context = canvas_node.getContext("2d");
         if(ms.right === ms.mine_num){
             dispatch({
                 type: "MINE_SWEEPER_WIN",
