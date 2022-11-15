@@ -141,17 +141,19 @@ const Draw = () => {
                                     data-action="SET_PENCIL"
                                     data-selected={canvas.type === "pencil"}
                                 >铅</li>
-                                {/* {<li
-                                    className="tool"
-                                >填</li>
-                                <li
-                                    className="tool"
-                                >字</li>} */}
                                 <li
                                     className="tool draw_selected draw_hover"
                                     data-action="SET_ERASER"
                                     data-selected={canvas.type === "eraser"}
                                 >橡</li>
+                                <li
+                                    className="tool draw_selected draw_hover"
+                                    data-action="UNDO"
+                                >undo</li>
+                                <li
+                                    className="tool draw_selected draw_hover"
+                                    data-action="REDO"
+                                >redo</li>
                                 {/* {<li
                                     className="tool"
                                 >吸</li>

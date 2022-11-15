@@ -32,6 +32,10 @@ const df_canvas = {
     last_scale:1,
     scale:1,
     scale_v:1,
+
+    step:[],
+    step_index:0,
+    undo:false,//撤销后腰修改step数组
 }
 
 const draw = (state = df_state,action) => {
@@ -109,7 +113,46 @@ const canvas = (state = df_canvas,action) => {
             return cv;
         }
         case "DRAW_END":{
+            if(!cv.drawing) return cv;
+            const cur_cv = document.querySelector(".draw_board");
+            const cur_ctx = cur_cv.getContext("2d");
+            let data = cur_ctx.getImageData(0,0,cur_cv.width,cur_cv.height);
+            if(cv.undo){
+                cv.step = cv.step.slice(0,cv.step_index + 1);
+                cv.undo = false;
+            }
+            cv.step.push(data);
+            cv.step_index = cv.step.length - 1;
             cv.drawing = false;
+            return cv;
+        }
+        case "REDO":{
+            if(cv.step_index === cv.step.length - 1){
+                return cv;
+            }
+            const cur_cv = document.querySelector(".draw_board");
+            const cur_ctx = cur_cv.getContext("2d");
+            cv.step_index++;
+            let data = cv.step[cv.step_index];
+            let s = Date.now();
+            cur_ctx.putImageData(data,0,0);
+            let e = Date.now();
+            console.log(e-s);
+            return cv;
+        }
+        case "UNDO":{
+            const cur_cv = document.querySelector(".draw_board");
+            const cur_ctx = cur_cv.getContext("2d");
+            if(cv.step_index-- <= 0){
+                cur_ctx.clearRect(0,0,cur_cv.width,cur_cv.height);
+                return cv;
+            }
+            let data = cv.step[cv.step_index];
+            // let s = Date.now();
+            cur_ctx.putImageData(data,0,0);
+            // let e = Date.now();
+            // console.log(e-s);
+            cv.undo = true;
             return cv;
         }
         case "CANVAS_EXTEND":{
