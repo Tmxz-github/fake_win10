@@ -10,7 +10,7 @@
 .widget[data-top="true"]{
     z-index: 9;
 }
-.widget[data-hide="true"]{
+.widget[data-open="false"]{
     opacity: 0;
     z-index: -1;
 }

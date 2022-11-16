@@ -9,7 +9,7 @@ const Calculator = () => {
     const op_apps = useSelector(state => state.open_apps);
     const app = useSelector(state => state.app);
     const self = op_apps.apps.filter((app) => {
-        return app["name"] === "CALCULATOR";
+        return app["name"] === "calculator";
     })[0];
     const dispatch = useDispatch();
     
@@ -46,6 +46,7 @@ const Calculator = () => {
     }
     useEffect(() => {
         if(self){
+            console.log(self);
             if(self.get_key){
                 let key = app.key_10[app.key_10.length - 1];
                 if("0123456789".indexOf(key) >= 0){

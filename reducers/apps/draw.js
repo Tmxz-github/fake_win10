@@ -70,16 +70,16 @@ const canvas = (state = df_canvas,action) => {
     }
     switch(action.type){
         case "DRAW_START":{
-            cv.X = cv.lastX = action.payload.nativeEvent.layerX;
-            cv.Y = cv.lastY = action.payload.nativeEvent.layerY;
+            cv.X = cv.lastX = Math.floor(action.payload.nativeEvent.layerX * cv.scale);
+            cv.Y = cv.lastY = Math.floor(action.payload.nativeEvent.layerY * cv.scale);
             cv.drawing = true;
             return cv;
         }
         case "DRAW_ING":{
             cv.lastX = cv.X;
             cv.lastY = cv.Y;
-            cv.X = action.payload.nativeEvent.layerX;
-            cv.Y= action.payload.nativeEvent.layerY;
+            cv.X = Math.floor(action.payload.nativeEvent.layerX * cv.scale);
+            cv.Y = Math.floor(action.payload.nativeEvent.layerY * cv.scale);
             return cv;
         }
         case "SET_COLOR":{
@@ -127,6 +127,7 @@ const canvas = (state = df_canvas,action) => {
             return cv;
         }
         case "REDO":{
+            // let s = Date.now();
             if(cv.step_index === cv.step.length - 1){
                 return cv;
             }
@@ -134,13 +135,13 @@ const canvas = (state = df_canvas,action) => {
             const cur_ctx = cur_cv.getContext("2d");
             cv.step_index++;
             let data = cv.step[cv.step_index];
-            let s = Date.now();
             cur_ctx.putImageData(data,0,0);
-            let e = Date.now();
-            console.log(e-s);
+            // let e = Date.now();
+            // console.log(e-s);
             return cv;
         }
         case "UNDO":{
+            if(cv.step_index < 0) return cv;
             const cur_cv = document.querySelector(".draw_board");
             const cur_ctx = cur_cv.getContext("2d");
             if(cv.step_index-- <= 0){
@@ -148,10 +149,7 @@ const canvas = (state = df_canvas,action) => {
                 return cv;
             }
             let data = cv.step[cv.step_index];
-            // let s = Date.now();
             cur_ctx.putImageData(data,0,0);
-            // let e = Date.now();
-            // console.log(e-s);
             cv.undo = true;
             return cv;
         }
@@ -163,6 +161,7 @@ const canvas = (state = df_canvas,action) => {
             return cv;
         }
         case "CANCLE_CANVAS_EXTEND":{
+            console.log("C");
             cv.extending = false;
             
             cv.resized = true;
@@ -222,23 +221,29 @@ const canvas = (state = df_canvas,action) => {
             return cv;
         }
         case "SCALE":{
-            if(action.payload == cv.scale) return cv;
-            cv.is_scale = true;
-            cv.scale = action.payload / cv.last_scale;
-            cv.last_scale = action.payload;
-
+            const cur_cv = document.querySelector(".draw_board");
+            const cur_ctx = cur_cv.getContext("2d");
+            
             const tmp_cv = document.createElement("canvas");
             const tmp_ctx = tmp_cv.getContext("2d");
-            const cur_cv = document.querySelector(".draw_board");
-            tmp_cv.width = cur_cv.width;
-            tmp_cv.height = cur_cv.height;
             tmp_ctx.drawImage(cur_cv,0,0);
-            cv.width *= cv.scale;
-            cv.height *= cv.scale;
-            cv.tmp_cv = tmp_cv;
-            // cv.last_scale = cv.scale;
+            cv.scale = action.payload;
+            cur_ctx.setTransform(action.payload,0,0,action.payload,0,0);
+            // cur_ctx.drawImage(tmp_cv);
+            cv.width = 900 * action.payload;
+            cv.height = 300 * action.payload;
+            // if(action.payload == cv.last_scale) return cv;
+            // cv.is_scale = true;
             // cv.scale = action.payload / cv.last_scale;
-            // cv.scale_v = action.payload;
+            // cv.last_scale = action.payload;
+
+            
+            // const cur_cv = document.querySelector(".draw_board");
+            // tmp_cv.width = cur_cv.width;
+            // tmp_cv.height = cur_cv.height;
+            // cv.width *= cv.scale;
+            // cv.height *= cv.scale;
+            // cv.tmp_cv = tmp_cv;
             return cv;
         }
         case "UNSCALE":{

@@ -55,7 +55,7 @@ const Widget = (args) => {
         <div
             className={`app ${app_name} widget`}
             onClick={dispatch_click}
-            data-hide={wg.hide}
+            data-open={wg.open}
             data-max={wg.max}
             data-top={self ? self.focus : ""}
         >
@@ -97,7 +97,7 @@ const Widget = (args) => {
                     <ul className="widget_oper_bar">
                         <li
                             className="win_ctl min"
-                            data-action="CLOSE"
+                            data-action="MIN"
                             data-g_action="APP_MIN"
                             data-name={app_name}
                         >

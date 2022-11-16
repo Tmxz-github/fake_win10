@@ -43,18 +43,11 @@ const App = () => {
 			}
 		});
 
-		if(e.target.dataset.action != "APP_OPEN"){
-			dispatch({
-				type:"SELECT",
-				payload:"",
-			});
-		}
-		else{
+		
 			dispatch({
 				type:"SELECT",
 				payload:e.target.dataset.name,
 			});
-		}
 	}
 	const to_top = (e) => {
 		if(e.target.closest(".app")){
@@ -87,13 +80,9 @@ const App = () => {
 		}
 	}
 	const dispatch_dbclick = (e) => {
-		if(e.target.dataset.action != "APP_OPEN") return;
+		if(e.target.dataset.action != "APP") return;
         dispatch({
             type:"OPEN",
-            payload:e.target.dataset.name,
-        });
-        dispatch({
-            type:e.target.dataset.action,
             payload:e.target.dataset.name,
         });
 	}

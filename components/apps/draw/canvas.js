@@ -43,9 +43,9 @@ const Canvas = () => {
             });
         }
         else if(canvas.is_scale){
-            context.clearRect(0,0,canvas.width,canvas.height);
-            context.scale(canvas.scale,canvas.scale);
-            context.drawImage(canvas.tmp_cv,0,0);
+            // context.clearRect(0,0,canvas.width,canvas.height);
+            // context.scale(canvas.scale,canvas.scale);
+            // context.drawImage(canvas.tmp_cv,0,0);
             dispatch({
                 type:"UNSCALE",
             });

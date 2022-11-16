@@ -1,6 +1,6 @@
 const app_widget_state = {
     name:"",
-    hide:true,
+    open:false,
     max:false,
 }
 const df_state = {
@@ -11,7 +11,7 @@ const df_state = {
     ],
     default: {
         name:"widget",
-        hide:true,
+        open:false,
         max:false,
     }
 }
@@ -29,15 +29,19 @@ const widgets = (state = df_state, action) => {
     });
     switch(action.type){
         case "OPEN":{
-            wg.hide = false;
+            wg.open = true;
+            return wgs;
+        }
+        case "MIN":{
+            wg.open = false;
             return wgs;
         }
         case "CLOSE":{
-            wg.hide = true;
+            wg.open = false;
             return wgs;
         }
         case "TOGGLE":{
-            wg.hide = !wg.hide;
+            wg.open = !wg.open;
             return wgs;
         }
         case "MAX_TOGGLE":{

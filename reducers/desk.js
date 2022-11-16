@@ -32,7 +32,7 @@ const open_apps = (state = df_state,action) => {
         ...state
     }
     switch(action.type){
-        case "APP_OPEN":{
+        case "OPEN":{
             let name = action.payload;
             let app = new App({
                 name:name,
@@ -40,7 +40,7 @@ const open_apps = (state = df_state,action) => {
             op_apps.apps.push(app);
             return to_top(name,op_apps);
         }
-        case "APP_CLOSE":{
+        case "CLOSE":{
             let name = action.payload;
             let index = 0;
             op_apps.apps.forEach((app,i) => {
@@ -52,7 +52,7 @@ const open_apps = (state = df_state,action) => {
             op_apps.apps.splice(index,1);
             return op_apps;
         }
-        case "APP_MIN":{
+        case "MIN":{
             let name = action.payload;
             let index = 0;
             op_apps.apps.forEach((app,i) => {

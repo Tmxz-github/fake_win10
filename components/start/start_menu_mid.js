@@ -13,18 +13,18 @@ const Start_menu_mid = () => {
                     return (
                         <li
                             className="app_bar start_hover app"
-                            data-action="APP_OPEN"
+                            data-action="APP"
                             key={app_name}
                             data-name={app_name}
                         >
                             <div
                                 className="app_icon"
-                                data-action="APP_OPEN"
+                                data-action="APP"
                                 data-name={app_name}
                             >
                                 <div
                                     className="icon"
-                                    data-action="APP_OPEN"
+                                    data-action="APP"
                                     data-name={app_name}
                                     style={{
                                         backgroundImage:"url("+ require("../../img/"+app_name+".png") +")"
@@ -32,7 +32,7 @@ const Start_menu_mid = () => {
                                 ></div>
                             </div>
                             <span
-                                data-action="APP_OPEN"
+                                data-action="APP"
                                 data-name={app_name}
                             >{app_name}</span>
                         </li>
