@@ -27,8 +27,8 @@ const Canvas = () => {
                 break;
             }
         }
-        ctx.moveTo(canvas.lastX / canvas.scale,canvas.lastY / canvas.scale);
-        ctx.lineTo(canvas.X / canvas.scale,canvas.Y / canvas .scale);
+        ctx.moveTo(Math.floor(canvas.lastX / canvas.scale),Math.floor(canvas.lastY / canvas.scale));
+        ctx.lineTo(Math.floor(canvas.X / canvas.scale),Math.floor(canvas.Y / canvas .scale));
         ctx.closePath();
         ctx.stroke();
     }
@@ -45,7 +45,7 @@ const Canvas = () => {
         else if(canvas.is_scale){
             // context.clearRect(0,0,canvas.width,canvas.height);
             // context.scale(canvas.scale,canvas.scale);
-            // context.drawImage(canvas.tmp_cv,0,0);
+            context.drawImage(canvas.tmp_cv,0,0,canvas.tmp_cv.width,canvas.tmp_cv.height,0,0,canvas.width,canvas.height);
             dispatch({
                 type:"UNSCALE",
             });

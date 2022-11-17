@@ -220,30 +220,33 @@ const canvas = (state = df_canvas,action) => {
             }
             return cv;
         }
-        case "SCALE":{
+        case "SCALE": {
+            if (cv.last_scale === action.payload) return cv;
             const cur_cv = document.querySelector(".draw_board");
             const cur_ctx = cur_cv.getContext("2d");
             
             const tmp_cv = document.createElement("canvas");
             const tmp_ctx = tmp_cv.getContext("2d");
+            tmp_cv.width = cur_cv.width;
+            tmp_cv.height = cur_cv.height;
             tmp_ctx.drawImage(cur_cv,0,0);
             cv.scale = action.payload;
+            cv.last_scale = cv.scale;
             cur_ctx.setTransform(action.payload,0,0,action.payload,0,0);
             // cur_ctx.drawImage(tmp_cv);
             cv.width = 900 * action.payload;
             cv.height = 300 * action.payload;
             // if(action.payload == cv.last_scale) return cv;
-            // cv.is_scale = true;
+            cv.is_scale = true;
             // cv.scale = action.payload / cv.last_scale;
             // cv.last_scale = action.payload;
 
             
             // const cur_cv = document.querySelector(".draw_board");
-            // tmp_cv.width = cur_cv.width;
-            // tmp_cv.height = cur_cv.height;
             // cv.width *= cv.scale;
             // cv.height *= cv.scale;
-            // cv.tmp_cv = tmp_cv;
+            console.log(tmp_cv.width, tmp_cv.height);
+            cv.tmp_cv = tmp_cv;
             return cv;
         }
         case "UNSCALE":{
