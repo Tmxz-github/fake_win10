@@ -29,7 +29,7 @@ const df_canvas = {
     tmp_cv:null,//扩展时预览画布
 
     is_scale:false,
-    last_scale:1,
+    last_scale:0,
     scale:1,
     scale_v:1,
 
@@ -222,20 +222,18 @@ const canvas = (state = df_canvas,action) => {
         }
         case "SCALE": {
             if (cv.last_scale === action.payload) return cv;
-            const cur_cv = document.querySelector(".draw_board");
-            const cur_ctx = cur_cv.getContext("2d");
             
-            const tmp_cv = document.createElement("canvas");
-            const tmp_ctx = tmp_cv.getContext("2d");
-            tmp_cv.width = cur_cv.width;
-            tmp_cv.height = cur_cv.height;
-            tmp_ctx.drawImage(cur_cv,0,0);
+            // const tmp_cv = document.createElement("canvas");
+            // const tmp_ctx = tmp_cv.getContext("2d");
+            // tmp_cv.width = cur_cv.width;
+            // tmp_cv.height = cur_cv.height;
+            // tmp_ctx.drawImage(cur_cv,0,0);
             cv.scale = action.payload;
             cv.last_scale = cv.scale;
-            cur_ctx.setTransform(action.payload,0,0,action.payload,0,0);
+            // cur_ctx.setTransform(action.payload,0,0,action.payload,0,0);
             // cur_ctx.drawImage(tmp_cv);
-            cv.width = 900 * action.payload;
-            cv.height = 300 * action.payload;
+            // cv.width = 900 * action.payload;
+            // cv.height = 300 * action.payload;
             // if(action.payload == cv.last_scale) return cv;
             cv.is_scale = true;
             // cv.scale = action.payload / cv.last_scale;
@@ -245,8 +243,19 @@ const canvas = (state = df_canvas,action) => {
             // const cur_cv = document.querySelector(".draw_board");
             // cv.width *= cv.scale;
             // cv.height *= cv.scale;
-            console.log(tmp_cv.width, tmp_cv.height);
-            cv.tmp_cv = tmp_cv;
+            // console.log(tmp_cv.width, tmp_cv.height);
+            // cv.tmp_cv = tmp_cv;
+            return cv;
+        }
+        case "UPDATE_SHOW_CV": {
+
+            const cur_cv = document.querySelector(".draw_board");
+            const cur_ctx = cur_cv.getContext("2d");
+            
+            const show_cv = document.querySelector(".tmp_canvas");
+            const show_ctx = show_cv.getContext("2d");
+            // const data = cur_ctx.getImageData(0, 0, cur_cv.width / action.payload, cur_cv.height / action.payload);
+            show_ctx.drawImage(cur_cv, 0, 0, cur_cv.width / cv.scale, cur_cv.height / cv.scale, 0, 0, show_cv.width, show_cv.height);
             return cv;
         }
         case "UNSCALE":{

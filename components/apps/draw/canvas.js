@@ -8,7 +8,7 @@ const Canvas = () => {
     const canvas = useSelector(state => state.canvas);
     const dispatch = useDispatch(); 
 
-    const draw = ctx => {
+    const draw = (ctx) => {
         if(!canvas.drawing){
             return;
         }
@@ -27,8 +27,8 @@ const Canvas = () => {
                 break;
             }
         }
-        ctx.moveTo(Math.floor(canvas.lastX / canvas.scale),Math.floor(canvas.lastY / canvas.scale));
-        ctx.lineTo(Math.floor(canvas.X / canvas.scale),Math.floor(canvas.Y / canvas .scale));
+        ctx.moveTo(Math.floor(canvas.lastX / canvas.scale / canvas.scale),Math.floor(canvas.lastY / canvas.scale / canvas.scale));
+        ctx.lineTo(Math.floor(canvas.X / canvas.scale / canvas.scale),Math.floor(canvas.Y / canvas .scale / canvas.scale));
         ctx.closePath();
         ctx.stroke();
     }
@@ -36,23 +36,45 @@ const Canvas = () => {
     useEffect(() => {
         const canvas_node = canvasRef.current;
         const context = canvas_node.getContext("2d");
-        if(canvas.resized){
-            context.drawImage(canvas.tmp_cv,0,0);
+        // const show_cv = document.querySelector(".tmp_canvas");
+        // const show_ctx = show_cv.getContext("2d");
+        if (canvas.resized) {
+            context.drawImage(canvas.tmp_cv, 0, 0);
             dispatch({
-                type:"UNRESIZED",
+                type: "UNRESIZED",
             });
         }
-        else if(canvas.is_scale){
-            // context.clearRect(0,0,canvas.width,canvas.height);
-            // context.scale(canvas.scale,canvas.scale);
-            context.drawImage(canvas.tmp_cv,0,0,canvas.tmp_cv.width,canvas.tmp_cv.height,0,0,canvas.width,canvas.height);
+        // else if (canvas.is_scale) {
+        //     // context.clearRect(0,0,canvas.width,canvas.height);
+        //     // context.scale(canvas.scale,canvas.scale);
+        //     // context.drawImage(canvas.tmp_cv, 0, 0, canvas.tmp_cv.width, canvas.tmp_cv.height, 0, 0, canvas.width, canvas.height);
+        //     show_ctx.clearRect(0, 0, show_cv.width, show_cv.height);
+        //     dispatch({
+        //         type: "UNSCALE",
+        //     });
+        // }
+        else {
+            draw(context);
+        }
+    }, [draw]);
+    useEffect(() => {
+        
+        const cur_cv = document.querySelector(".draw_board");
+        const cur_ctx = cur_cv.getContext("2d");
+        
+        const show_cv = document.querySelector(".tmp_canvas");
+        const show_ctx = show_cv.getContext("2d");
+        
+        if(canvas.is_scale){
+            show_ctx.clearRect(0, 0, show_cv.width, show_cv.height);
             dispatch({
-                type:"UNSCALE",
+                type: "UNSCALE",
             });
         }
-        else draw(context);
-    }, [draw])
-    
+
+        show_ctx.drawImage(cur_cv, 0, 0, cur_cv.width / canvas.scale, cur_cv.height / canvas.scale, 0, 0, show_cv.width, show_cv.height);
+    }, [canvas]);
+     
     return (
         <canvas
             className="draw_board"
@@ -82,9 +104,9 @@ const Canvas = () => {
             }}
             onMouseMove={(e) => {
                 dispatch({
-                    type:"DRAW_ING",
-                    payload:e,
-                })
+                    type: "DRAW_ING",
+                    payload: e,
+                });
             }}
             width={canvas.width}
             height={canvas.height}

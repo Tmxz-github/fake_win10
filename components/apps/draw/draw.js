@@ -300,16 +300,12 @@ const Draw = () => {
             <div
                 className="draw_box"
             >
-                    <Canvas />
                     <canvas
                         className="tmp_canvas"
-                        width={0}
-                        height={0}
-                        style={{
-                            zIndex:"-1",
-                            position:"absolute",
-                        }}
+                        width={900}
+                        height={300}
                     ></canvas>
+                    <Canvas />
                     <div
                         className="canvas_extend_bottom"
                         style={{

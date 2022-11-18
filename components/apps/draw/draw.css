@@ -99,6 +99,15 @@ li{
 .draw_board{
     background-color: white;
     cursor: crosshair;
+    opacity: 0;
+    box-shadow: 10px 10px 10px rgb(171,184,202);
+}
+.tmp_canvas{
+    position: absolute;
+    left: .3125rem;
+    top: .3125rem;
+    background-color: white;
+    cursor: crosshair;
     box-shadow: 10px 10px 10px rgb(171,184,202);
 }
 
