@@ -395,7 +395,7 @@ const Draw = () => {
             >
                 <div
                     className="canvas_mouse_position"
-                >{canvas.show_position ? Math.trunc(canvas.X / canvas.last_scale)+","+Math.trunc(canvas.Y / canvas.last_scale)+"像素" : ""}</div>
+                >{canvas.show_position ? Math.trunc(canvas.X / canvas.last_scale) - canvas.drag_position[0] + "," + (Math.trunc(canvas.Y / canvas.last_scale) - canvas.drag_position[1]) + "像素" : ""}</div>
                 <div
                     className="canvas_size"
                 >{canvas.width +" × "+canvas.height +"像素"}</div>
