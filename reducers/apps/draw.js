@@ -41,7 +41,9 @@ const df_canvas = {
     step_index:0,
     undo:false,//撤销后腰修改step数组
 
-    change_toggle:false,//每次undo redo 变化一次方便记录
+    drag_start_position: [0, 0],
+    drag_position_offset:[0, 0],
+    
 }
 
 const draw = (state = df_state,action) => {
@@ -73,6 +75,10 @@ const draw = (state = df_state,action) => {
             dw.Space = true;
             return dw;
         }
+        case "APP_KEY_UP": {
+            dw.Space = false;
+            return dw;
+        }
         default:
             return dw
     }
@@ -84,9 +90,14 @@ const canvas = (state = df_canvas,action) => {
     }
     switch(action.type){
         case "DRAW_START":{
-            cv.X = cv.lastX = Math.floor(action.payload.nativeEvent.layerX);
-            cv.Y = cv.lastY = Math.floor(action.payload.nativeEvent.layerY);
+            cv.X = cv.lastX = action.payload.nativeEvent.layerX;
+            cv.Y = cv.lastY = action.payload.nativeEvent.layerY;
             cv.drawing = true;
+            return cv;
+        }
+        case "DRAW_DRAG_START": {
+            cv.drag_start_position[0] = action.payload.nativeEvent.layerX;
+            cv.drag_start_position[1] = action.payload.nativeEvent.layerY;
             return cv;
         }
         case "DRAW_ING":{
@@ -94,6 +105,11 @@ const canvas = (state = df_canvas,action) => {
             cv.lastY = cv.Y;
             cv.X = Math.floor(action.payload.nativeEvent.layerX);
             cv.Y = Math.floor(action.payload.nativeEvent.layerY);
+            return cv;
+        }
+        case "DRAW_DRAGGING": {
+            cv.drag_position_offset[0] = action.payload.nativeEvent.layerX - cv.drag_start_position[0];
+            cv.drag_position_offset[1] = action.payload.nativeEvent.layerY - cv.drag_start_position[1];
             return cv;
         }
         case "SET_COLOR":{
@@ -125,6 +141,9 @@ const canvas = (state = df_canvas,action) => {
         case "UNSHOW_POSITION":{
             cv.show_position = false;
             return cv;
+        }
+        case "DRAW_DRAG_END": {
+            
         }
         case "DRAW_END":{
             if(!cv.drawing) return cv;

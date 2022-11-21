@@ -80,23 +80,28 @@ const Draw = () => {
                     });
     
     useEffect(() => {
+        if(app.key_up){
+            dispatch({
+                type: "APP_KEY_UP",
+            });
+            return;
+        }
         if(self){
             if(self.get_key){
                 let key = app.key_10[app.key_10.length - 1];
-                console.log(key);
                 // if(key === "Control" && !draw.Ctrl){
                 //     dispatch({
                 //         type:"SET_Ctrl",
                 //     });
                 // }
-                if(key === " " && !draw.Space){
+                if(key === " "){
                     dispatch({
                         type:"DRAW_SET_Space",
                     });
                 }
             }
         }
-    },[app.toggle])
+    },[app.key_down])
 
 
     const ele = (

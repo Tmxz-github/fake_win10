@@ -45,6 +45,7 @@ const Calculator = () => {
         }
     }
     useEffect(() => {
+        if (!app.key_down) return;
         if(self){
             if(self.get_key){
                 let key = app.key_10[app.key_10.length - 1];
@@ -101,7 +102,7 @@ const Calculator = () => {
                 }
             }
         }
-    },[app.toggle])
+    },[app.key_down])
     
 
     const memories = calculator.memory.map((mem,index) => {

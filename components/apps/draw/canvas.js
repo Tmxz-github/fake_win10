@@ -27,8 +27,10 @@ const Canvas = (args) => {
                 break;
             }
         }
-        ctx.moveTo(Math.floor(canvas.lastX / canvas.scale),Math.floor(canvas.lastY / canvas.scale));
-        ctx.lineTo(Math.floor(canvas.X / canvas.scale),Math.floor(canvas.Y / canvas .scale));
+        let s_x = canvas.drag_position_offset[0] > 0 ? Math.floor(canvas.drag_position_offset[0] / canvas.scale) : 0;
+        let s_y = canvas.drag_position_offset[1] > 0 ? Math.floor(canvas.drag_position_offset[1] / canvas.scale) : 0;
+        ctx.moveTo(Math.floor(canvas.lastX / canvas.scale) + s_x,Math.floor(canvas.lastY / canvas.scale) + s_y);
+        ctx.lineTo(Math.floor(canvas.X / canvas.scale) + s_x,Math.floor(canvas.Y / canvas .scale) + s_y);
         ctx.closePath();
         ctx.stroke();
     }
@@ -56,7 +58,10 @@ const Canvas = (args) => {
                 type: "UNSCALE",
             });
         }
-        show_ctx.drawImage(cur_cv, 0, 0, cur_cv.width / canvas.scale, cur_cv.height / canvas.scale, 0, 0, show_cv.width, show_cv.height);
+        let s_x = canvas.drag_position_offset[0] > 0 ? Math.floor(canvas.drag_position_offset[0] / canvas.scale) : 0;
+        let s_y = canvas.drag_position_offset[1] > 0 ? Math.floor(canvas.drag_position_offset[1] / canvas.scale) : 0;
+        show_ctx.drawImage(cur_cv, s_x, s_y, cur_cv.width / canvas.scale, cur_cv.height / canvas.scale, 0, 0, show_cv.width, show_cv.height);
+        // show_ctx.drawImage(cur_cv, 0, 0, cur_cv.width / canvas.scale, cur_cv.height / canvas.scale, 0, 0, show_cv.width, show_cv.height);
     }, [canvas]);
      
     return (

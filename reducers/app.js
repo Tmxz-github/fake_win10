@@ -1,6 +1,9 @@
 const df_state = {
     key_10:[],
-    toggle:false,
+    toggle: false,
+    key_down: false,
+    key_up: true,
+    
 }
 
 
@@ -14,7 +17,14 @@ const app = (state = df_state, action) => {
                 app.key_10.shift();
             }
             app.key_10.push(action.payload);
-            app.toggle = !app.toggle;
+            // app.toggle = !app.toggle;
+            app.key_up = false;
+            app.key_down = true;
+            return app;
+        }
+        case "KEY_UP": {
+            app.key_down = false;
+            app.key_up = true;
             return app;
         }
         default:

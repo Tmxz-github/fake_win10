@@ -86,10 +86,15 @@ const App = () => {
             payload:e.target.dataset.name,
         });
 	}
-	const keyboard_handle = (e) => {
+	const keyboard_down_handle = (e) => {
 		dispatch({
 			type: "KEY_DOWN",
 			payload: e.key,
+		});
+	}
+	const keyboard_up_handle = () => {
+		dispatch({
+			type: "KEY_UP",
 		});
 	}
 
@@ -97,7 +102,8 @@ const App = () => {
 	window.oncontextmenu = handle_context_menu;
 	window.onmousedown = to_top;
 	window.ondblclick = dispatch_dbclick;
-	window.onkeydown = keyboard_handle;
+	window.onkeydown = keyboard_down_handle;
+	window.onkeyup = keyboard_up_handle;
 
 	return (
 		<div
