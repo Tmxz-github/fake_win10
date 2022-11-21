@@ -96,12 +96,14 @@ li{
     padding: 5px;
 }
 .draw_board{
-    background-color: white;
     cursor: crosshair;
     opacity: 0;
     box-shadow: 10px 10px 10px rgb(171,184,202);
 }
 .draw_board[data-space="true"]{
+    cursor: grab;
+}
+.draw_board[data-dragging="true"]{
     cursor: grabbing;
 }
 .tmp_canvas{

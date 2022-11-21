@@ -27,8 +27,8 @@ const Canvas = (args) => {
                 break;
             }
         }
-        let s_x = canvas.drag_position_offset[0] > 0 ? Math.floor(canvas.drag_position_offset[0] / canvas.scale) : 0;
-        let s_y = canvas.drag_position_offset[1] > 0 ? Math.floor(canvas.drag_position_offset[1] / canvas.scale) : 0;
+        let s_x = canvas.drag_position[0];
+        let s_y = canvas.drag_position[1];
         ctx.moveTo(Math.floor(canvas.lastX / canvas.scale) + s_x,Math.floor(canvas.lastY / canvas.scale) + s_y);
         ctx.lineTo(Math.floor(canvas.X / canvas.scale) + s_x,Math.floor(canvas.Y / canvas .scale) + s_y);
         ctx.closePath();
@@ -58,59 +58,72 @@ const Canvas = (args) => {
                 type: "UNSCALE",
             });
         }
-        let s_x = canvas.drag_position_offset[0] > 0 ? Math.floor(canvas.drag_position_offset[0] / canvas.scale) : 0;
-        let s_y = canvas.drag_position_offset[1] > 0 ? Math.floor(canvas.drag_position_offset[1] / canvas.scale) : 0;
-        show_ctx.drawImage(cur_cv, s_x, s_y, cur_cv.width / canvas.scale, cur_cv.height / canvas.scale, 0, 0, show_cv.width, show_cv.height);
-        // show_ctx.drawImage(cur_cv, 0, 0, cur_cv.width / canvas.scale, cur_cv.height / canvas.scale, 0, 0, show_cv.width, show_cv.height);
+        let s_x = canvas.drag_position[0];
+        let s_y = canvas.drag_position[1];
+        // let s_x = canvas.drag_position_offset[0] > 0 ? Math.floor(canvas.drag_position_offset[0] / canvas.scale) : 0;
+        // let s_y = canvas.drag_position_offset[1] > 0 ? Math.floor(canvas.drag_position_offset[1] / canvas.scale) : 0;
+        show_ctx.drawImage(cur_cv, Math.floor((-s_x) / canvas.scale),
+                                   Math.floor((-s_y) / canvas.scale),
+                    cur_cv.width / canvas.scale, cur_cv.height / canvas.scale, 0, 0, show_cv.width, show_cv.height);
+        // show_ctx.drawImage(cur_cv, Math.floor((canvas.drag_last_position[0] + s_x) / canvas.scale),
+        //                            Math.floor((canvas.drag_last_position[1] + s_y) / canvas.scale),
+        //             cur_cv.width / canvas.scale, cur_cv.height / canvas.scale, 0, 0, show_cv.width, show_cv.height);
     }, [canvas]);
      
     return (
         <canvas
             className="draw_board"
             onMouseDown={(e) => {
-                if(args.Space){
+                if (args.Space) {
                     dispatch({
-                        type:"DRAW_DRAG_START",
-                        payload:e,
+                        type: "DRAW_DRAG_START",
+                        payload: e,
                     });
                 }
-                else{
+                else {
                     dispatch({
-                        type:"DRAW_START",
-                        payload:e,
+                        type: "DRAW_START",
+                        payload: e,
                     });
                 }
             }}
             onMouseUp={() => {
                 if(args.Space){
                     dispatch({
-                        type:"DRAW_DRAG_END",
+                        type: "DRAW_DRAG_END",
                     });
                 }
                 else{
                     dispatch({
-                        type:"DRAW_END",
+                        type: "DRAW_END",
                     });
                 }
             }}
             onMouseEnter={() => {
                 dispatch({
-                    type:"SHOW_POSITION",
+                    type: "SHOW_POSITION",
                 });
             }}
             onMouseOut={() => {
                 dispatch({
-                    type:"UNSHOW_POSITION",
+                    type: "UNSHOW_POSITION",
                 });
-                dispatch({
-                    type:"DRAW_END",
-                });
+                if(args.Space){
+                    dispatch({
+                        type: "DRAW_DRAG_END",
+                    });
+                }
+                else{
+                    dispatch({
+                        type: "DRAW_END",
+                    });
+                } 
             }}
             onMouseMove={(e) => {
                 if(args.Space){
                     dispatch({
-                        type:"DRAW_DRAGGING",
-                        payload:e,
+                        type: "DRAW_DRAGGING",
+                        payload: e,
                     });
                 }
                 else{
@@ -123,6 +136,7 @@ const Canvas = (args) => {
             width={canvas.width}
             height={canvas.height}
             data-space={args.Space}
+            data-dragging={canvas.dragging}
             
             ref={canvasRef}/>
     )

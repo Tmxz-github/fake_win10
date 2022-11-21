@@ -42,7 +42,10 @@ const df_canvas = {
     undo:false,//撤销后腰修改step数组
 
     drag_start_position: [0, 0],
-    drag_position_offset:[0, 0],
+    drag_last_position: [0, 0],
+    drag_position: [0, 0],
+    drag_offset: [0, 0],
+    dragging: false,
     
 }
 
@@ -98,18 +101,24 @@ const canvas = (state = df_canvas,action) => {
         case "DRAW_DRAG_START": {
             cv.drag_start_position[0] = action.payload.nativeEvent.layerX;
             cv.drag_start_position[1] = action.payload.nativeEvent.layerY;
+            
+            cv.dragging = true;
             return cv;
         }
         case "DRAW_ING":{
             cv.lastX = cv.X;
             cv.lastY = cv.Y;
-            cv.X = Math.floor(action.payload.nativeEvent.layerX);
-            cv.Y = Math.floor(action.payload.nativeEvent.layerY);
+            cv.X = action.payload.nativeEvent.layerX;
+            cv.Y = action.payload.nativeEvent.layerY;
             return cv;
         }
         case "DRAW_DRAGGING": {
-            cv.drag_position_offset[0] = action.payload.nativeEvent.layerX - cv.drag_start_position[0];
-            cv.drag_position_offset[1] = action.payload.nativeEvent.layerY - cv.drag_start_position[1];
+            if(!cv.dragging) return cv;
+            cv.drag_offset[0] = action.payload.nativeEvent.layerX - cv.drag_start_position[0];
+            cv.drag_offset[1] = action.payload.nativeEvent.layerY - cv.drag_start_position[1];
+
+            cv.drag_position[0] = cv.drag_last_position[0] + cv.drag_offset[0];
+            cv.drag_position[1] = cv.drag_last_position[1] + cv.drag_offset[1];
             return cv;
         }
         case "SET_COLOR":{
@@ -143,7 +152,10 @@ const canvas = (state = df_canvas,action) => {
             return cv;
         }
         case "DRAW_DRAG_END": {
-            
+            cv.drag_last_position[0] = cv.drag_position[0];
+            cv.drag_last_position[1] = cv.drag_position[1];
+            cv.dragging = false;
+            return cv;
         }
         case "DRAW_END":{
             if(!cv.drawing) return cv;
