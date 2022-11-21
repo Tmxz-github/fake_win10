@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 import { Canvas } from "./canvas";
 import { Widget } from "../../widgets/widgets";
@@ -12,6 +13,11 @@ import "./draw_effect.css"
 const Draw = () => {
     const draw = useSelector(state => state.draw);
     const canvas = useSelector(state => state.canvas);
+    const op_apps = useSelector(state => state.open_apps);
+    const app = useSelector(state => state.app);
+    const self = op_apps.apps.filter((app) => {
+        return app["name"] === "draw";
+    })[0];
     const dispatch = useDispatch();
 
     const empty_handle = (e) => {
@@ -73,6 +79,26 @@ const Draw = () => {
                         )
                     });
     
+    useEffect(() => {
+        if(self){
+            if(self.get_key){
+                let key = app.key_10[app.key_10.length - 1];
+                console.log(key);
+                // if(key === "Control" && !draw.Ctrl){
+                //     dispatch({
+                //         type:"SET_Ctrl",
+                //     });
+                // }
+                if(key === " " && !draw.Space){
+                    dispatch({
+                        type:"DRAW_SET_Space",
+                    });
+                }
+            }
+        }
+    },[app.toggle])
+
+
     const ele = (
         <div
             className="draw_bottom"
@@ -302,10 +328,12 @@ const Draw = () => {
             >
                     <canvas
                         className="tmp_canvas"
-                        width={900}
-                        height={300}
+                        width={canvas.width}
+                        height={canvas.height}
                     ></canvas>
-                    <Canvas />
+                    <Canvas
+                        Space = {draw.Space}
+                    />
                     <div
                         className="canvas_extend_bottom"
                         style={{
@@ -365,7 +393,7 @@ const Draw = () => {
                 >{canvas.show_position ? Math.trunc(canvas.X / canvas.last_scale)+","+Math.trunc(canvas.Y / canvas.last_scale)+"像素" : ""}</div>
                 <div
                     className="canvas_size"
-                >{canvas.width / canvas.last_scale+" × "+canvas.height / canvas.last_scale+"像素"}</div>
+                >{canvas.width +" × "+canvas.height +"像素"}</div>
             </div>
         </div>
     )

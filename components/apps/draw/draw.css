@@ -91,7 +91,6 @@ li{
 .draw_box{
     position: relative;
     height: calc(100% - 160px);
-    /* flex: 1 1 auto; */
     background-color: rgb(211,221,235);
     overflow: scroll;
     padding: 5px;
@@ -101,6 +100,9 @@ li{
     cursor: crosshair;
     opacity: 0;
     box-shadow: 10px 10px 10px rgb(171,184,202);
+}
+.draw_board[data-space="true"]{
+    cursor: grabbing;
 }
 .tmp_canvas{
     position: absolute;

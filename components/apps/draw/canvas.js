@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 
-const Canvas = () => {
+const Canvas = (args) => {
   
     const canvasRef = useRef(null);
     const canvas = useSelector(state => state.canvas);
@@ -27,8 +27,8 @@ const Canvas = () => {
                 break;
             }
         }
-        ctx.moveTo(Math.floor(canvas.lastX / canvas.scale / canvas.scale),Math.floor(canvas.lastY / canvas.scale / canvas.scale));
-        ctx.lineTo(Math.floor(canvas.X / canvas.scale / canvas.scale),Math.floor(canvas.Y / canvas .scale / canvas.scale));
+        ctx.moveTo(Math.floor(canvas.lastX / canvas.scale),Math.floor(canvas.lastY / canvas.scale));
+        ctx.lineTo(Math.floor(canvas.X / canvas.scale),Math.floor(canvas.Y / canvas .scale));
         ctx.closePath();
         ctx.stroke();
     }
@@ -36,42 +36,26 @@ const Canvas = () => {
     useEffect(() => {
         const canvas_node = canvasRef.current;
         const context = canvas_node.getContext("2d");
-        // const show_cv = document.querySelector(".tmp_canvas");
-        // const show_ctx = show_cv.getContext("2d");
-        if (canvas.resized) {
+        if(canvas.resized){
             context.drawImage(canvas.tmp_cv, 0, 0);
             dispatch({
                 type: "UNRESIZED",
             });
         }
-        // else if (canvas.is_scale) {
-        //     // context.clearRect(0,0,canvas.width,canvas.height);
-        //     // context.scale(canvas.scale,canvas.scale);
-        //     // context.drawImage(canvas.tmp_cv, 0, 0, canvas.tmp_cv.width, canvas.tmp_cv.height, 0, 0, canvas.width, canvas.height);
-        //     show_ctx.clearRect(0, 0, show_cv.width, show_cv.height);
-        //     dispatch({
-        //         type: "UNSCALE",
-        //     });
-        // }
-        else {
+        else{
             draw(context);
         }
-    }, [draw]);
+    });
     useEffect(() => {
-        
-        const cur_cv = document.querySelector(".draw_board");
-        const cur_ctx = cur_cv.getContext("2d");
-        
+        const cur_cv = canvasRef.current;
         const show_cv = document.querySelector(".tmp_canvas");
         const show_ctx = show_cv.getContext("2d");
-        
+        show_ctx.clearRect(0, 0, show_cv.width, show_cv.height);
         if(canvas.is_scale){
-            show_ctx.clearRect(0, 0, show_cv.width, show_cv.height);
             dispatch({
                 type: "UNSCALE",
             });
         }
-
         show_ctx.drawImage(cur_cv, 0, 0, cur_cv.width / canvas.scale, cur_cv.height / canvas.scale, 0, 0, show_cv.width, show_cv.height);
     }, [canvas]);
      
@@ -79,15 +63,30 @@ const Canvas = () => {
         <canvas
             className="draw_board"
             onMouseDown={(e) => {
-                dispatch({
-                    type:"DRAW_START",
-                    payload:e,
-                });
+                if(args.Space){
+                    dispatch({
+                        type:"DRAW_DRAG_START",
+                        payload:e,
+                    });
+                }
+                else{
+                    dispatch({
+                        type:"DRAW_START",
+                        payload:e,
+                    });
+                }
             }}
             onMouseUp={() => {
-                dispatch({
-                    type:"DRAW_END",
-                });
+                if(args.Space){
+                    dispatch({
+                        type:"DRAW_DRAG_END",
+                    });
+                }
+                else{
+                    dispatch({
+                        type:"DRAW_END",
+                    });
+                }
             }}
             onMouseEnter={() => {
                 dispatch({
@@ -103,13 +102,22 @@ const Canvas = () => {
                 });
             }}
             onMouseMove={(e) => {
-                dispatch({
-                    type: "DRAW_ING",
-                    payload: e,
-                });
+                if(args.Space){
+                    dispatch({
+                        type:"DRAW_DRAGGING",
+                        payload:e,
+                    });
+                }
+                else{
+                    dispatch({
+                        type: "DRAW_ING",
+                        payload: e,
+                    });
+                }
             }}
             width={canvas.width}
             height={canvas.height}
+            data-space={args.Space}
             
             ref={canvasRef}/>
     )

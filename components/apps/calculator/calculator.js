@@ -46,7 +46,6 @@ const Calculator = () => {
     }
     useEffect(() => {
         if(self){
-            console.log(self);
             if(self.get_key){
                 let key = app.key_10[app.key_10.length - 1];
                 if("0123456789".indexOf(key) >= 0){
@@ -56,7 +55,7 @@ const Calculator = () => {
                     });
                 }
                 if("+-*/".indexOf(key) >= 0){
-                    let oper = ";"
+                    let oper = "add";
                     switch(key){
                         case "+":{
                             oper = "add";
