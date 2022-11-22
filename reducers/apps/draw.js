@@ -74,6 +74,10 @@ const draw = (state = df_state,action) => {
             dw.Ctrl = true;
             return dw;
         }
+        case "DRAW_SET_Shift":{
+            dw.Shift = true;
+            return dw;
+        }
         case "DRAW_SET_Space":{
             dw.Space = true;
             return dw;
@@ -81,6 +85,7 @@ const draw = (state = df_state,action) => {
         case "APP_KEY_UP": {
             dw.Space = false;
             dw.Ctrl = false;
+            dw.Shift = false;
             return dw;
         }
         default:

@@ -89,9 +89,9 @@ const Draw = () => {
         if(self){
             if(self.get_key){
                 let key = app.key_10[app.key_10.length - 1];
-                if(key === "Control" && !draw.Ctrl){
+                if(key === "Shift" && !draw.Shift){
                     dispatch({
-                        type:"DRAW_SET_Ctrl",
+                        type:"DRAW_SET_Shift",
                     });
                 }
                 if(key === " " && !draw.Space){
@@ -338,7 +338,7 @@ const Draw = () => {
                     ></canvas>
                     <Canvas
                         Space={draw.Space}
-                        Ctrl={draw.Ctrl}
+                        Shift={draw.Shift}
                     />
                     <div
                         className="canvas_extend_bottom"

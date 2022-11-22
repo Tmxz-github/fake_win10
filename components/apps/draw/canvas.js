@@ -128,7 +128,8 @@ const Canvas = (args) => {
                     });
                 }
             }}
-            onWheel={args.Ctrl ? (e) => {
+            onWheel={args.Shift ? (e) => {
+                e.preventDefault();
                 if(e.deltaY === 0) return;
                 dispatch({
                     type: "SCALE_WHEEL",
