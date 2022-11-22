@@ -29,8 +29,8 @@ const Canvas = (args) => {
         }
         let s_x = canvas.drag_position[0];
         let s_y = canvas.drag_position[1];
-        ctx.moveTo(Math.floor(canvas.lastX / canvas.scale) - s_x,Math.floor(canvas.lastY / canvas.scale) - s_y);
-        ctx.lineTo(Math.floor(canvas.X / canvas.scale) - s_x,Math.floor(canvas.Y / canvas .scale) - s_y);
+        ctx.moveTo(Math.floor((canvas.lastX - s_x) / canvas.scale), Math.floor((canvas.lastY - s_y) / canvas.scale));
+        ctx.lineTo(Math.floor((canvas.X - s_x) / canvas.scale),Math.floor((canvas.Y - s_y) / canvas .scale));
         ctx.closePath();
         ctx.stroke();
     }
