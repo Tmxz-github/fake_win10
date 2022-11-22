@@ -113,13 +113,13 @@ const Draw = () => {
             >
                 <ul>
                     <li
-                        className="fraw_file"
+                        className="draw_file"
                     >文件</li>
                     <li
-                        className="fraw_main"
+                        className="draw_main"
                     >主页</li>
                     <li
-                        className="fraw_check"
+                        className="draw_check"
                     >查看</li>
                 </ul>
             </div>

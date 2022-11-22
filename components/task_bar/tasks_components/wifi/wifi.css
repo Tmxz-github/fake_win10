@@ -4,8 +4,8 @@
 .wifi_icon .icon{
     width: 100%;
     height: 100%;
-    transform: rotate(-47deg) translate(0rem,-6.25rem);
     background-image: url(../../../../img/icons8-wi-fi-48.png);
+    transform: rotate(-47deg) translate(0rem,-5rem);
     filter: drop-shadow(0rem 5rem white);
     background-size: 1rem;
     background-repeat: no-repeat;

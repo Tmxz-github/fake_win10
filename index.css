@@ -8,6 +8,7 @@
 }
 
 :root{
+    --test_border:1px solid black;
     --theme_bk_color:rgba(17, 17, 17, 0.8);
 }
 

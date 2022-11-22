@@ -106,6 +106,17 @@ const App = () => {
 	window.onkeydown = keyboard_down_handle;
 	window.onkeyup = keyboard_up_handle;
 
+	Function.prototype.throttle = function(fn, delay){
+		let timer = null;
+		return function(){
+			if(timer) return;
+			timer = setTimeout(() => {
+				fn.apply(this, arguments);
+				timer = null;
+			},delay);
+		}
+	}
+
 	return (
 		<div
 			className="screen"
