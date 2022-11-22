@@ -89,12 +89,12 @@ const Draw = () => {
         if(self){
             if(self.get_key){
                 let key = app.key_10[app.key_10.length - 1];
-                // if(key === "Control" && !draw.Ctrl){
-                //     dispatch({
-                //         type:"SET_Ctrl",
-                //     });
-                // }
-                if(key === " "){
+                if(key === "Control" && !draw.Ctrl){
+                    dispatch({
+                        type:"DRAW_SET_Ctrl",
+                    });
+                }
+                if(key === " " && !draw.Space){
                     dispatch({
                         type:"DRAW_SET_Space",
                     });
@@ -337,7 +337,8 @@ const Draw = () => {
                         height={canvas.height}
                     ></canvas>
                     <Canvas
-                        Space = {draw.Space}
+                        Space={draw.Space}
+                        Ctrl={draw.Ctrl}
                     />
                     <div
                         className="canvas_extend_bottom"

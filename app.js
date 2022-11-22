@@ -87,7 +87,7 @@ const App = () => {
         });
 	}
 	const keyboard_down_handle = (e) => {
-		e.preventDefault();
+		if(e.key === " ")e.preventDefault();
 		dispatch({
 			type: "KEY_DOWN",
 			payload: e.key,

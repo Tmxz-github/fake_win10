@@ -80,6 +80,7 @@ const draw = (state = df_state,action) => {
         }
         case "APP_KEY_UP": {
             dw.Space = false;
+            dw.Ctrl = false;
             return dw;
         }
         default:
@@ -262,13 +263,38 @@ const canvas = (state = df_canvas,action) => {
             return cv;
         }
         case "SCALE": {
-            if(cv.last_scale === action.payload) return cv;
-            cv.scale = action.payload;
+            if(cv.last_scale == action.payload) return cv;
+            cv.scale = parseInt(action.payload);
+            cv.last_scale = cv.scale;
+
+            cv.drag_position[0] = 0;
+            cv.drag_position[1] = 0;
+            
+            cv.drag_last_position[0] = 0;
+            cv.drag_last_position[1] = 0;
+
+            cv.is_scale = true;
+            return cv;
+        }
+        case "SCALE_WHEEL": {
+            if(cv.scale >= 10 || cv.scale <= 0.2) return cv;
+            let step = action.payload.deltaY > 0 ? -0.1 : 0.1;
+            cv.scale += step;
+
+            
+            cv.drag_offset[0] = Math.floor(action.payload.nativeEvent.layerX / cv.scale * step);
+            cv.drag_offset[1] = Math.floor(action.payload.nativeEvent.layerY / cv.scale * step);
+
+            cv.drag_position[0] = cv.drag_last_position[0] - cv.drag_offset[0];
+            cv.drag_position[1] = cv.drag_last_position[1] - cv.drag_offset[1];
+
             cv.last_scale = cv.scale;
             cv.is_scale = true;
             return cv;
         }
-        case "UNSCALE":{
+        case "UNSCALE": {
+            cv.drag_last_position[0] = cv.drag_position[0];
+            cv.drag_last_position[1] = cv.drag_position[1];
             cv.is_scale = false;
             return cv;
         }

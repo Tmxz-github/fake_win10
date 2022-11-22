@@ -128,6 +128,13 @@ const Canvas = (args) => {
                     });
                 }
             }}
+            onWheel={args.Ctrl ? (e) => {
+                if(e.deltaY === 0) return;
+                dispatch({
+                    type: "SCALE_WHEEL",
+                    payload: e,
+                });
+            } : null}
             width={canvas.width}
             height={canvas.height}
             data-space={args.Space}
